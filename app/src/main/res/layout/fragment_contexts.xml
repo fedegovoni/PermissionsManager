@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_applications_main_relative_layout"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_contexts_main_list_view"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:headerDividersEnabled="true"
+            android:divider="@color/colorAccent"
+            android:dividerHeight="0px"
+            android:background="#EEEEEE"
+            android:paddingBottom="164dp"
+            android:paddingTop="4dp"
+            android:clipToPadding="false"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fragment_contexts_add_context_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="100dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/plus"
+            android:foregroundGravity="center"/>
+
+    <RelativeLayout
+        android:id="@+id/fragment_contexts_empty_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/fragment_contexts_empty_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/nessun_current_context_logo"/>
+
+        <TextView
+            android:id="@+id/fragment_contexts_empty_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_contexts_empty_image_view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:textColor="#616161"
+            android:text="@string/no_current_context"/>
+    </RelativeLayout>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fragment_contexts_ad_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-9125265928210219/6676307037">
+    </com.google.android.gms.ads.AdView>
+
+</RelativeLayout>

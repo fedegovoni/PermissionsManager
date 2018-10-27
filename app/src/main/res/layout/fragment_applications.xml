@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_applications_main_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main_app_bar_main">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_applications_applications_list_view"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:headerDividersEnabled="true"
+        android:divider="@color/colorAccent"
+        android:dividerHeight="1px"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
+        android:background="@color/common_google_signin_btn_text_dark_default" />
+
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fragment_applications_ad_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-9125265928210219/6676307037">
+    </com.google.android.gms.ads.AdView>
+
+
+</RelativeLayout>

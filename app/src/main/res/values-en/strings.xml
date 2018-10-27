@@ -1,0 +1,132 @@
+<resources>
+    <string name="action_settings">Settings</string>
+
+    <string name="contexts">Contexts</string>
+    <string name="settings">"Settings"</string>
+    <string name="receive_notifications">Do you want to receive notifications when contexts are applied and revoked?</string>
+
+    <string name="enabled">enabled</string>
+    <string name="disabled">disabled</string>
+
+    <string name="applied_context">Applied context</string>
+    <string name="disabled_context">Disabled context</string>
+
+    <string name="permission_to_grant">Permissions to grant</string>
+    <string name="permission_to_revoke">Permissions to revoke</string>
+
+    <string name="title_activity_new_policy">Settings</string>
+    <string name="no_current_context">No context available</string>
+    <string name="no_permission">This application doesn\'t require any permission</string>
+    <string name="place_picker_error">Sorry, probably you pressed "SELECT" before dialog loads data. Please select again your location.</string>
+
+    <string name="agree">agree</string>
+    <string name="disagree">disagree</string>
+    <string name="attention">Attention:</string>
+    <string name="dialog_all_apps_content">Initial permissions loading will be heavier.\nDo you want to continue?</string>
+
+    <string name="no_root_title">Root required:</string>
+    <string name="no_root_text">Seems that this device can\'t gain root privileges. You won\'t be able to manage applications permissions. If you\'d like to unlock this function, please root your device.</string>
+
+    <string name="new_context">New context</string>
+
+    <string name="fill_each_field">Fill each requested field!</string>
+    <string name="invalid_radius">Invalid radius, radius setted to default value </string>
+    <string name="denied_position">Permission denied, impossible to read Position</string>
+
+    <string name="support">Get pro</string>
+
+    <string name="context_name">Context name</string>
+    <string name="activation_frequency">Activation Frequency</string>
+    <string name="type">Type</string>
+    <string name="days">Days</string>
+    <string name="monday">M</string>
+    <string name="tuesday">T</string>
+    <string name="wednesday">W</string>
+    <string name="thursday">T</string>
+    <string name="friday">F</string>
+    <string name="saturday">S</string>
+    <string name="sunday">S</string>
+
+    <string name="activation_date">Activation date</string>
+    <string name="activation_time">Activation time</string>
+    <string name="deactivation_before_activation_error">Attention: if Deactivation time comes earlier than Activation time, the Context will be deactivated on the next day</string>
+    <string name="deactivation_date">Deactivation date</string>
+    <string name="deactivation_time">Deactivation time</string>
+    <string name="address">Address</string>
+    <string name="next">NEXT</string>
+
+    <string name="version">Version:</string>
+    <string name="size">Size:</string>
+    <string name="API">API:</string>
+
+    <string name="radius">Radius</string>
+    <string name="km">km</string>
+    <string name="miles">miles</string>
+
+    <string name="dont_show_again">DON\'T SHOW AGAIN</string>
+
+    <string name="changelog">Changelog</string>
+
+    <string name="distance_measure">Distance measure</string>
+    <string name="applications">Applications</string>
+
+    <string name="communicate">Communicate</string>
+    <string name="rate">Rate</string>
+    <string name="share">Share</string>
+
+    <string name="modify">Modify</string>
+    <string name="delete">Delete</string>
+
+    <string-array name="changelog_content_value">
+        <item>- Bug fix and minor improvements</item>
+        <item>- You can now buy pro version, which allows you to choose to don\'t receive notifications when a context is activated and deactivated and removes advertising. If you donated money to the developer in the past, you will get PRO version automatically ;).</item>
+    </string-array>
+
+
+    <string-array name="policy_types_array">
+        <item>No type selected</item>
+        <item>Time</item>
+        <item>Position</item>
+    </string-array>
+
+    <string-array name="application_frequency">
+        <item>None</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+    </string-array>
+
+    <string name="none">None</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+
+    <string name="toast_timecontext_weekly_noweekdays">TimeContext with WEEKLY frequency has no days of week selected</string>
+
+    <string-array name="distance_measure">
+        <item>Km</item>
+        <item>Miles</item>
+    </string-array>
+
+    <string-array name="applications_list">
+        <item>All</item>
+        <item>User app only</item>
+    </string-array>
+
+    <string name="get_pro_error_dialog">Error occurred</string>
+    <string name="get_pro_button_close">Close</string>
+    <string name="get_pro_description">Do you find this application useful?\nPurchase the PRO version and remove the annoying advices!</string>
+    <string name="get_pro_button_text">GET PRO!</string>
+    <string name="get_pro_market_not_supported">In-App Donations are not supported. Is Google Play Store installed correctly?</string>
+    <string name="get_pro_not_supported_title">In-App Donations are not supported.</string>
+    <string name="get_pro_thanks_dialog">Thanks for purchase PRO!\nSince now advices will be removed.</string>
+    <string name="get_pro_thanks">Thanks!</string>
+    <string name="get_pro_cant_verify_pro_version">At the moment is not possible to verify your purchases.</string>
+    <string name="get_pro_already_pro">You already have PRO version ;)</string>
+
+    <string name="settings_pro_label">PRO Only</string>
+
+    <string name="not_working_title">Ops! Compatibility issues:</string>
+    <string name="not_working_text">Seems that this device doesn\'t support permissions changing via ADB, this means that Permission\'s Manager couldn\'t work properly. :(</string>
+    <string name="get_pro_purchase_price" translatable="false">1,29 $</string>
+
+
+</resources>

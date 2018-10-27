@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/adapter_row_custom_permission_header_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/adapter_row_custom_permission_header_application_icon_image_view"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="32dp"
+            android:src="@mipmap/adapter_row_custom_application_application_icon_image_view" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/adapter_row_custom_permission_header_application_icon_image_view">
+
+            <TextView
+                android:id="@+id/adapter_row_custom_permission_header_app_version_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/version"/>
+
+            <TextView
+                android:id="@+id/adapter_row_custom_permission_header_app_size_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/adapter_row_custom_permission_header_app_version_text_view"
+                android:layout_marginTop="16dp"
+                android:text="@string/size"/>
+
+            <TextView
+                android:id="@+id/adapter_row_custom_permission_header_app_api_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/adapter_row_custom_permission_header_app_size_text_view"
+                android:layout_marginTop="16dp"
+                android:text="@string/API"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:paddingTop="8dp"
+        android:background="@android:color/white">
+
+
+        <TextView
+            android:id="@+id/adapter_row_custom_permission_header_app_name_text_view"
+            android:text="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:textStyle="normal|bold"
+            android:textColor="@android:color/holo_blue_light" />
+
+        <include
+            layout="@layout/adapter_row_custom_permission"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</LinearLayout>

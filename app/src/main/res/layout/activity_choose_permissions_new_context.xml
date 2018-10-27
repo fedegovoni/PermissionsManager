@@ -1,0 +1,56 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true" />
+
+        <ExpandableListView
+            android:id="@+id/activity_choose_permissions_new_context_expandible_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/common_google_signin_btn_text_dark_default"
+            android:divider="@color/colorAccent"
+            android:dividerHeight="1px"
+            android:headerDividersEnabled="true"
+            android:groupIndicator="@null"
+            android:visibility="gone"
+            android:paddingBottom="164dp"
+            android:clipToPadding="false"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/activity_choose_permissions_new_context_floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="100dp"
+            android:visibility="gone"
+            android:src="@drawable/tick"/>
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView_choose_permissions_new_context_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-8dp"
+            ads:adSize="SMART_BANNER"
+            android:layout_alignParentBottom="true"
+            ads:adUnitId="ca-app-pub-9125265928210219/6676307037"/>
+
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

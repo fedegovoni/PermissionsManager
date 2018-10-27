@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Donations/Donations.iml" filepath="$PROJECT_DIR$/../Donations/Donations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PermissionsManager - V 1.5.5 (Pubblicita).iml" filepath="$PROJECT_DIR$/../PermissionsManager - V 1.5.5 (Pubblicita).iml" />
+      <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" />
+    </modules>
+  </component>
+</project>

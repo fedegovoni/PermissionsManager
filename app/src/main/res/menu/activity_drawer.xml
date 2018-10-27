@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_apps"
+            android:icon="@drawable/apps"
+            android:title="@string/applications" />
+
+        <item
+            android:id="@+id/nav_contexts"
+            android:icon="@drawable/calendar"
+            android:title="@string/contexts" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/settings"
+            android:title="@string/settings" />
+
+        <item
+            android:id="@+id/nav_support"
+            android:icon="@drawable/purchase_pro"
+            android:title="@string/support" />
+
+        <item android:title="@string/communicate">
+            <menu>
+
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/share"
+                    android:title="@string/share" />
+
+                <item
+                    android:id="@+id/nav_rate"
+                    android:icon="@drawable/rate"
+                    android:title="@string/rate" />
+                <item
+                    android:id="@+id/nav_changelog"
+                    android:icon="@drawable/changelog"
+                    android:title="@string/changelog" />
+            </menu>
+        </item>
+    </group>
+
+</menu>
