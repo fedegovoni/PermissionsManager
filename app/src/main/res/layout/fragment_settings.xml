@@ -81,14 +81,18 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:textColor="@color/colorAccent"
-        android:text="asdadads"/>
+        android:text="@string/fragment_settings_pro_title"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/fragment_settings_receive_notifications_text_input_layout"
         android:layout_below="@id/fragment_settings_pro_label_text_view"
         android:layout_width="match_parent"
         android:textColorHint="#000000"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:layout_height="wrap_content"

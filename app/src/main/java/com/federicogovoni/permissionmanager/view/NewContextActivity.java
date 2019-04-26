@@ -82,7 +82,7 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
         final Button nextButton = (Button) findViewById(R.id.activity_new_context_next_button);
 
 
-        setTitle(getResources().getString(R.string.new_context));
+
 
         // Sample AdMob app ID: ca-app-pub-9125265928210219~3176045725
         MobileAds.initialize(this, "ca-app-pub-9125265928210219~3176045725");
@@ -96,9 +96,11 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
             city = toModify.getLocationContext().getCity();
         }
 
-        if (toModify != null) {
+        if (toModify.getName() != null && !toModify.getName().equals("")) {
             contextNameEditText.setText(toModify.getName());
-            getSupportActionBar().setTitle(toModify.getName());
+            setTitle(toModify.getName());
+        } else {
+            setTitle(getResources().getString(R.string.new_context));
         }
 
         try {
@@ -456,4 +458,5 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
         super.onResume();
         waitingForPlacePicker = false;
     }
+
 }

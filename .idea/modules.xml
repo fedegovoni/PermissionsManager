@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Donations/Donations.iml" filepath="$PROJECT_DIR$/Donations/Donations.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Permissions Manager - V 1.6.iml" filepath="$PROJECT_DIR$/Permissions Manager - V 1.6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PermissionsManager.iml" filepath="$PROJECT_DIR$/PermissionsManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -27,16 +27,18 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.federicogovoni.permissionmanager.billing.IabHelper;
 import com.federicogovoni.permissionmanager.controller.ProVersionChecker;
 import com.federicogovoni.permissionmanager.model.Permission;
+import com.federicogovoni.permissionmanager.utils.GeneralUtils;
 import com.federicogovoni.permissionmanager.utils.IabHelperInstance;
 import com.federicogovoni.permissionmanager.utils.LastFragmentUsed;
 import com.federicogovoni.permissionmanager.R;
 import com.federicogovoni.permissionmanager.utils.RootUtil;
-import com.federicogovoni.permissionmanager.controller.LocationService;
+import com.federicogovoni.permissionmanager.controller.location.LocationService;
 import com.federicogovoni.permissionmanager.controller.PermissionsLoader;
 import com.federicogovoni.permissionmanager.view.fragment.ApplicationsFragment;
 import com.federicogovoni.permissionmanager.view.fragment.ContextsFragment;
 import com.federicogovoni.permissionmanager.view.fragment.GetProFragment;
 import com.federicogovoni.permissionmanager.view.fragment.SettingsFragment;
+import com.google.android.gms.location.FusedLocationProviderClient;
 
 
 import java.lang.ref.WeakReference;
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity
             "ntpsync.donation.2", "ntpsync.donation.3", "ntpsync.donation.5", "ntpsync.donation.8",
             "ntpsync.donation.13"};
     private boolean mDebug = false;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +68,9 @@ public class MainActivity extends AppCompatActivity
 
         new BackgroundLoaderTask(this).execute();
 
-        if(!isMyServiceRunning(LocationService.class)) {
-            Intent startServiceIntent = new Intent(this, LocationService.class);
-            getApplicationContext().startService(startServiceIntent);
-        }
 
-
+        //check if the background location service is running and then start it.
+        GeneralUtils.checkAndStartLocationService(getApplicationContext());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -267,21 +268,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    private boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        try {
-            for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-                if (serviceClass.getName().equals(service.service.getClassName())) {
-                    return true;
-                }
-            }
-        } catch(NullPointerException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
 
     private static class BackgroundLoaderTask extends AsyncTask<Void, Void, Void> {
         private WeakReference<Activity> activityReference;

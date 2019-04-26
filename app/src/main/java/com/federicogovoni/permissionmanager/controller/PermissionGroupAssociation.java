@@ -52,7 +52,7 @@ public class PermissionGroupAssociation {
             }
         }
             catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         Collections.sort(permissionNameList);

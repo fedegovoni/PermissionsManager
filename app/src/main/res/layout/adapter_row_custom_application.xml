@@ -10,10 +10,10 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            app:srcCompat="@mipmap/adapter_row_custom_application_application_icon_image_view"
-            android:id="@+id/nav_header_main_image_view"
-            android:layout_height="45dp"
-            android:layout_width="45dp" />
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/nav_header_main_image_view"
+        android:layout_height="45dp"
+        android:layout_width="45dp" />
 
         <TextView
             android:id="@+id/adapter_row_custom_application_app_name_text_view"

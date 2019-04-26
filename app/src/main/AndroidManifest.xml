@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="com.android.vending.BILLING" />
@@ -62,13 +63,19 @@
         <receiver android:name=".controller.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.federicogovoni.permissionsmanager.RESTART_SERVICE" />
             </intent-filter>
         </receiver>
 
         <service
-            android:name=".controller.LocationService"
-            android:process=":location_service" />
-
+            android:name=".controller.location.LocationService"
+            android:process=":location_service"
+            android:exported="true"/>
+        <service
+            android:name=".controller.location.LocationJobService"
+            android:exported="true"
+            android:process=":location_job_service"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
         <receiver
             android:name=".controller.Alarm"
             android:process=":alarm" />

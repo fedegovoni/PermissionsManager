@@ -35,6 +35,8 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import static com.federicogovoni.permissionmanager.model.CurrentContext.ENABLED;
+import static com.federicogovoni.permissionmanager.model.CurrentContext.IN_LOCATION;
+import static com.federicogovoni.permissionmanager.model.CurrentContext.IN_TIME;
 import static com.federicogovoni.permissionmanager.model.CurrentContext.RUNNING_STATE;
 
 /**
@@ -105,15 +107,14 @@ public class ContextCardAdapter extends BaseAdapter {
         SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
                 Log.d(TAG, "Invoked onSharedPreferenceChangeListener");
-                if(key.contains(ENABLED)) {
-                    StringTokenizer tokenizer = new StringTokenizer(key,"_");
-                    tokenizer.nextToken();
-                    int id = Integer.parseInt(tokenizer.nextToken());
-                    if(!(finalCurrentContexts.get(position).getId() == id))
+                if (key.contains(RUNNING_STATE)) {
+                    String idS = key.substring(RUNNING_STATE.length());
+                    int id = Integer.parseInt(idS);
+                    if (!(finalCurrentContexts.get(position).getId() == id))
                         return;
                     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
                     boolean isRunning = sp.getBoolean(RUNNING_STATE + id, false);
-                    if(isRunning) {
+                    if (isRunning) {
                         finalViewHolder.running.setVisibility(View.VISIBLE);
                     } else {
                         finalViewHolder.running.setVisibility(View.GONE);
@@ -130,7 +131,7 @@ public class ContextCardAdapter extends BaseAdapter {
             TimeContext p = contexts.get(position).getTimeContext();
             viewHolder.frequencyDetail.setText(p.getFrequency() == 0 ? R.string.none : p.getFrequency() == 1 ? R.string.daily : R.string.weekly);
             String dateDetail = "";
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat(context.getResources().getString(R.string.date_format_full), Locale.getDefault());
             if(p.getFrequency() == TimeContext.NONE) {
                 dateDetail = sdf.format(p.getApplyDate()) + "\n" + sdf.format(p.getDeactivationDate());
             } else {

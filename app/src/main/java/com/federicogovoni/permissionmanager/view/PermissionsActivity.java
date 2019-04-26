@@ -1,5 +1,6 @@
 package com.federicogovoni.permissionmanager.view;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -30,6 +31,7 @@ public class PermissionsActivity extends AppCompatActivity {
     public static final String OTHER = "OTHER";
     private AdView mAdView;
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,8 +107,6 @@ public class PermissionsActivity extends AppCompatActivity {
                 }
             }
         }.execute();
-
-
     }
 
 }

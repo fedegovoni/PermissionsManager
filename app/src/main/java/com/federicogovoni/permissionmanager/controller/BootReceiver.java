@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import com.federicogovoni.permissionmanager.controller.location.LocationService;
+import com.federicogovoni.permissionmanager.controller.location.OreoLocationListener;
 import com.federicogovoni.permissionmanager.model.CurrentContext;
 import com.federicogovoni.permissionmanager.model.TimeContext;
+import com.federicogovoni.permissionmanager.utils.GeneralUtils;
 
 import java.util.Calendar;
 
@@ -38,12 +41,7 @@ public class BootReceiver extends BroadcastReceiver {
             }
         }
 
-        Intent startServiceIntent = new Intent(context, LocationService.class);
-        if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O) {
-            context.startForegroundService(startServiceIntent);
-        }
-        else {
-            context.startService(startServiceIntent);
-        }
+
+        GeneralUtils.checkAndStartLocationService(context);
     }
 }

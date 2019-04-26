@@ -96,6 +96,7 @@
     <string-array name="changelog_content_value">
         <item>- Bug fix and minor improvements</item>
         <item>- You can now buy pro version, which allows you to choose to don\'t receive notifications when a context is activated and deactivated and removes advertising. If you donated money to the developer in the past, you will get PRO version automatically ;).</item>
+        <item>- Fixed a bug that was causing on opening in Android 6.X.</item>
     </string-array>
 
     <string-array name="policy_types_array">
@@ -139,6 +140,8 @@
 
     <string name="get_pro_purchase_price">1.29 $</string>
     <string name="settings_pro_label">PRO Only</string>
+    <string name="fragment_settings_pro_title">Pro only</string>
+    <string name="date_format_full" translatable="false">dd/MM/yyyy - HH:mm</string>
 
 
 </resources>

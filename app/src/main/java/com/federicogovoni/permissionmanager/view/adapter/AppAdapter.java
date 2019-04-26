@@ -2,6 +2,7 @@ package com.federicogovoni.permissionmanager.view.adapter;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,9 @@ public class AppAdapter extends ArrayAdapter<ApplicationInfo> {
         super(context, resource, items);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View v, ViewGroup parent) {
+    public View getView(int position, View v, @NonNull ViewGroup parent) {
 
 
         if (v == null) {
