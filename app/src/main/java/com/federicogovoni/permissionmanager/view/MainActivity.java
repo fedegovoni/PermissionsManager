@@ -219,6 +219,8 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
         if (id == R.id.nav_apps && lfu.getLastFragmentId() != id) {
             lfu.setNewId(id);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            toolbar.inflateMenu(R.menu.search_menu);
             Fragment aFragment = new ApplicationsFragment();
             trans.replace(R.id.fragment_applications_main_relative_layout, aFragment);
             trans.addToBackStack("fragBack");
