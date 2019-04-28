@@ -84,6 +84,16 @@ public class PermissionsLoader {
         return appPermissionMap;
     }
 
+    public Map<ApplicationInfo, List<Permission>> getAppPermissionMap(String nameStartsWith) {
+        Map<ApplicationInfo, List<Permission>> supportMap = new HashMap<>();
+        for(ApplicationInfo applicationInfo : appPermissionMap.keySet()) {
+            if(applicationInfo.loadLabel(mContext.getPackageManager()).toString().toLowerCase().startsWith(nameStartsWith.toLowerCase())) {
+                supportMap.put(applicationInfo, appPermissionMap.get(applicationInfo));
+            }
+        }
+        return supportMap;
+    }
+
     public List<Permission> getAppPermissions (ApplicationInfo applicationInfo) {
         return appPermissionMap.get(applicationInfo);
     }
@@ -92,7 +102,17 @@ public class PermissionsLoader {
         return applicationsList;
     }
 
-    public ApplicationInfo searchApplicationInfoByPakcageName(String packageName) {
+    public List<ApplicationInfo> getApplicationsList(String startsWith) {
+        List<ApplicationInfo> supportList = new ArrayList<>();
+        for(ApplicationInfo appInfo : applicationsList) {
+            if(appInfo.loadLabel(mContext.getPackageManager()).toString().toLowerCase().startsWith(startsWith.toLowerCase())) {
+                supportList.add(appInfo);
+            }
+        }
+        return supportList;
+    }
+
+    public ApplicationInfo searchApplicationInfoByPackageName(String packageName) {
         for(ApplicationInfo applicationInfo : getApplicationsList()) {
             if(applicationInfo.packageName.equals(packageName))
                 return applicationInfo;

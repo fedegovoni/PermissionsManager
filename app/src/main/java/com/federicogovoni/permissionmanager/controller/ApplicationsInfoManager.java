@@ -17,25 +17,35 @@ import java.util.List;
  * Created by Federico on 05/12/2017.
  */
 
-public class ApplicationsInfoKeeper {
+public class ApplicationsInfoManager {
 
-    private static ApplicationsInfoKeeper lfu;
+    private static ApplicationsInfoManager lfu;
     private List<ApplicationInfo> installedApplications;
     private Context context = null;
 
-    private ApplicationsInfoKeeper(Context context) {
+    private ApplicationsInfoManager(Context context) {
         this.context = context;
         reloadInstalledApplications();
     }
 
-    public static ApplicationsInfoKeeper getInstance(Context context) {
+    public static ApplicationsInfoManager getInstance(Context context) {
         if (lfu == null)
-            lfu = new ApplicationsInfoKeeper(context);
+            lfu = new ApplicationsInfoManager(context);
         return lfu;
     }
 
-    public List<ApplicationInfo> getInstalledAppplications() {
+    public List<ApplicationInfo> getInstalledApplications() {
         return installedApplications;
+    }
+
+    public List<ApplicationInfo> getInstalledApplications(String startsWith) {
+        List<ApplicationInfo> supportList = new ArrayList<>();
+        for(ApplicationInfo applicationInfo : installedApplications) {
+            if(applicationInfo.loadLabel(context.getPackageManager()).toString().toLowerCase().startsWith(startsWith.toLowerCase())) {
+                supportList.add(applicationInfo);
+            }
+        }
+        return supportList;
     }
 
     public void reloadInstalledApplications() {

@@ -30,6 +30,8 @@
     <string name="title_activity_new_policy">Settings</string>
     <string name="no_current_context">No context available</string>
     <string name="no_permission">This application doesn\'t require any permission</string>
+    <string name="no_app_available">No applications have been found :(</string>
+
     <string name="place_picker_error">Sorry, probably you pressed "SELECT" before dialog loads data. Please select again your location.</string>
 
     <string name="agree">agree</string>

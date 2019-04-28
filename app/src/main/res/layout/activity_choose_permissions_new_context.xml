@@ -10,15 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_centerInParent="true"
-            android:indeterminate="true" />
-
         <ExpandableListView
-            android:id="@+id/activity_choose_permissions_new_context_expandible_list_view"
+            android:id="@+id/activity_choose_permissions_new_context_expandable_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
@@ -28,9 +21,37 @@
             android:dividerHeight="1px"
             android:headerDividersEnabled="true"
             android:groupIndicator="@null"
-            android:visibility="gone"
+            android:visibility="visible"
             android:paddingBottom="164dp"
             android:clipToPadding="false"/>
+
+        <RelativeLayout
+            android:id="@+id/activity_choose_permissions_new_context_empty_list_relative_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/activity_choose_permissions_new_context_empty_list_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/no_permissions_logo"/>
+
+            <TextView
+                android:id="@+id/activity_choose_permissions_new_context_empty_list_text_view"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_choose_permissions_new_context_empty_list_image_view"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:textColor="#616161"
+                android:textAlignment="center"
+                android:text="@string/no_app_available"/>
+        </RelativeLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/activity_choose_permissions_new_context_floating_action_button"
@@ -42,6 +63,13 @@
             android:layout_marginBottom="100dp"
             android:visibility="gone"
             android:src="@drawable/tick"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true" />
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView_choose_permissions_new_context_activity"

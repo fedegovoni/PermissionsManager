@@ -103,7 +103,7 @@ public class PermissionsActivity extends AppCompatActivity {
                     findViewById(R.id.activity_permissions_progress_bar).setVisibility(View.GONE);
                 } else {
                     findViewById(R.id.activity_permissions_progress_bar).setVisibility(View.GONE);
-                    findViewById(R.id.activity_permissions_empty_list_relative_layout).setVisibility(View.VISIBLE);
+                    findViewById(R.id.fragment_applications_empty_list_relative_layout).setVisibility(View.VISIBLE);
                 }
             }
         }.execute();

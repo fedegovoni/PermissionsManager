@@ -17,6 +17,7 @@
     <string name="title_activity_new_policy">Impostazioni</string>
     <string name="no_current_context">Nessun contesto disponibile</string>
     <string name="no_permission">Quest\'applicazione non richiede alcun permesso</string>
+    <string name="no_app_available">Non sono state trovate applicazioni :(</string>
     <string name="place_picker_error">Scusa, probabilmente hai premuto "SELEZIONA" prima che i dati potessero essere caricati completamente. Per favore seleziona nuovamente la posizione.</string>
 
     <string name="agree">acconsento</string>

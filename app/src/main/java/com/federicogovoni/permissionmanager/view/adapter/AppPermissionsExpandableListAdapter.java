@@ -212,5 +212,9 @@ public class AppPermissionsExpandableListAdapter extends BaseExpandableListAdapt
         res.addAll(mGrantList);
         return res;
     }
+
+    public List<ApplicationInfo> getGroups() {
+        return mListDataHeader;
+    }
 }
 

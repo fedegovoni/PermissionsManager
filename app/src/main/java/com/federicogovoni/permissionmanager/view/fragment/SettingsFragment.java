@@ -19,7 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.federicogovoni.permissionmanager.controller.ProVersionChecker;
 import com.federicogovoni.permissionmanager.model.LocationContext;
 import com.federicogovoni.permissionmanager.R;
-import com.federicogovoni.permissionmanager.controller.ApplicationsInfoKeeper;
+import com.federicogovoni.permissionmanager.controller.ApplicationsInfoManager;
 import com.federicogovoni.permissionmanager.controller.ContextManager;
 import com.federicogovoni.permissionmanager.controller.PermissionsLoader;
 import com.federicogovoni.permissionmanager.utils.AdRequestKeeper;
@@ -116,7 +116,7 @@ public class SettingsFragment extends Fragment {
                                     @Override
                                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                         sp.edit().putInt(ApplicationsFragment.APPLICATIONS_LIST, ApplicationsFragment.ALL_APPLICATIONS).apply();
-                                        ApplicationsInfoKeeper.getInstance(getActivity().getApplicationContext()).reloadInstalledApplications();
+                                        ApplicationsInfoManager.getInstance(getActivity().getApplicationContext()).reloadInstalledApplications();
                                         new BackgroundLoaderTask(getActivity()).execute();
                                     }
                                 }).onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -130,7 +130,7 @@ public class SettingsFragment extends Fragment {
                 } else if (position == ApplicationsFragment.USER_APPLICATIONS) {
                     if (sp.getInt(ApplicationsFragment.APPLICATIONS_LIST, ApplicationsFragment.USER_APPLICATIONS)== ApplicationsFragment.ALL_APPLICATIONS) {
                         sp.edit().putInt(ApplicationsFragment.APPLICATIONS_LIST, ApplicationsFragment.USER_APPLICATIONS).apply();
-                        ApplicationsInfoKeeper.getInstance(getActivity().getApplicationContext()).reloadInstalledApplications();
+                        ApplicationsInfoManager.getInstance(getActivity().getApplicationContext()).reloadInstalledApplications();
                         new BackgroundLoaderTask(getActivity()).execute();
                     }
                 }

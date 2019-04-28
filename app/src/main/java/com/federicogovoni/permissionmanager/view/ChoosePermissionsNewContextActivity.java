@@ -6,7 +6,10 @@ import android.content.pm.ApplicationInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
@@ -27,11 +30,16 @@ import com.google.android.gms.ads.AdView;
 import java.util.List;
 import java.util.Map;
 
-public class ChoosePermissionsNewContextActivity extends AppCompatActivity {
+import timber.log.Timber;
+
+import static com.federicogovoni.permissionmanager.controller.PermissionsLoader.getInstance;
+
+public class ChoosePermissionsNewContextActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private CurrentContext toCreate;
     private AppPermissionsExpandableListAdapter adapter;
     private AdView mAdView;
+    private SearchView searchView;
 
     @SuppressLint("StaticFieldLeak")
     @Override
@@ -53,7 +61,7 @@ public class ChoosePermissionsNewContextActivity extends AppCompatActivity {
                 layoutParams.setMargins(0, 0, layoutParams.getMarginEnd(), layoutParams.getMarginEnd());
                 buttonView.setLayoutParams(layoutParams);
 
-                View listView =  findViewById(R.id.activity_choose_permissions_new_context_expandible_list_view);
+                View listView =  findViewById(R.id.activity_choose_permissions_new_context_expandable_list_view);
                 float density = getResources().getDisplayMetrics().density;
                 listView.setPadding(0,0,0,Math.round((float) 100 * density));
             }
@@ -68,28 +76,16 @@ public class ChoosePermissionsNewContextActivity extends AppCompatActivity {
         else
             getSupportActionBar().setTitle(getResources().getString(R.string.permission_to_revoke));
 
-        new AsyncTask<Void, Void, AppPermissionsExpandableListAdapter>() {
+        new AsyncTask<Void, Void, Void>() {
 
             @Override
-            protected AppPermissionsExpandableListAdapter doInBackground(Void... params) {
-                Map<ApplicationInfo, List<Permission>> appPermissionsMap = PermissionsLoader.getInstance(getApplicationContext()).getAppPermissionMap();
-                adapter = new AppPermissionsExpandableListAdapter(getApplicationContext(),
-                        PermissionsLoader.getInstance(getApplicationContext()).getApplicationsList(), appPermissionsMap);
-
-                return adapter;
+            protected Void doInBackground(Void... params) {
+                Map<ApplicationInfo, List<Permission>> appPermissionsMap = getInstance(getApplicationContext()).getAppPermissionMap();
+                List<ApplicationInfo> applicationInfos = getInstance(getApplicationContext()).getApplicationsList();
+                fillExpandableListView(applicationInfos, appPermissionsMap);
+                return null;
             }
 
-            @Override
-            protected void onPostExecute(AppPermissionsExpandableListAdapter adapter) {
-                ExpandableListView listView = (ExpandableListView) findViewById(R.id.activity_choose_permissions_new_context_expandible_list_view);
-
-                findViewById(R.id.progressBar).setVisibility(View.GONE);
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.activity_choose_permissions_new_context_floating_action_button);
-                fab.setVisibility(View.VISIBLE);
-
-                listView.setVisibility(View.VISIBLE);
-                listView.setAdapter(adapter);
-            }
         }.execute();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.activity_choose_permissions_new_context_floating_action_button);
@@ -119,6 +115,56 @@ public class ChoosePermissionsNewContextActivity extends AppCompatActivity {
                 }
                 ChoosePermissionsNewContextActivity.this.startActivity(intent);
                 finish();
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        Timber.d("Inflate search menu");
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+
+        // Associate searchable configuration with the SearchView
+        // SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+
+        // searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(this);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        searchView.clearFocus();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        Map<ApplicationInfo, List<Permission>> appPermissionsMap = PermissionsLoader.getInstance(this).getAppPermissionMap(newText);
+        List<ApplicationInfo> applicationInfos =  getInstance(getApplicationContext()).getApplicationsList(newText);
+        fillExpandableListView(applicationInfos, appPermissionsMap);
+        return true;
+    }
+
+    private void fillExpandableListView(final List<ApplicationInfo> applicationInfos, final Map<ApplicationInfo, List<Permission>> applicationInfoListMap) {
+        adapter = new AppPermissionsExpandableListAdapter(getApplicationContext(), applicationInfos, applicationInfoListMap);
+        final ExpandableListView listView = (ExpandableListView) findViewById(R.id.activity_choose_permissions_new_context_expandable_list_view);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
+                if(applicationInfos.isEmpty()) {
+                    findViewById(R.id.activity_choose_permissions_new_context_empty_list_relative_layout).setVisibility(View.VISIBLE);
+                    //listView.setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.activity_choose_permissions_new_context_empty_list_relative_layout).setVisibility(View.GONE);
+                    listView.setVisibility(View.VISIBLE);
+                }
+
+                findViewById(R.id.activity_choose_permissions_new_context_floating_action_button).setVisibility(View.VISIBLE);
+
+                listView.setAdapter(adapter);
             }
         });
     }

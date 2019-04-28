@@ -21,6 +21,34 @@
         android:clipToPadding="false"
         android:background="@color/common_google_signin_btn_text_dark_default" />
 
+    <RelativeLayout
+        android:id="@+id/fragment_applications_empty_list_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="250dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/fragment_applications_empty_list_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/no_permissions_logo"/>
+
+        <TextView
+            android:id="@+id/fragment_applications_empty_list_text_view"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_applications_empty_list_image_view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:textColor="#616161"
+            android:textAlignment="center"
+            android:text="@string/no_app_available"/>
+    </RelativeLayout>
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"

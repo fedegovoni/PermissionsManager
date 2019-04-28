@@ -55,7 +55,6 @@ import static com.federicogovoni.permissionmanager.R.id.activity_new_context_sun
 import static com.federicogovoni.permissionmanager.R.id.activity_new_context_thursday_checked_text_view;
 import static com.federicogovoni.permissionmanager.R.id.activity_new_context_tuesday_checked_text_view;
 import static com.federicogovoni.permissionmanager.R.id.activity_new_context_wednesday_checked_text_view;
-import static com.federicogovoni.permissionmanager.R.id.scroll;
 
 public class NewContextActivity extends AppCompatActivity implements View.OnClickListener {
 

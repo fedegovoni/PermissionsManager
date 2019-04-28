@@ -153,9 +153,9 @@ public class ContextCardAdapter extends BaseAdapter {
         final View rl = ((AppCompatActivity) context).findViewById(R.id.fragment_contexts_main_list_view);
         final View noContext = ((AppCompatActivity) context).findViewById(R.id.fragment_contexts_empty_relative_layout);
 
-        viewHolder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 final Dialog modifyDeleteDialog = new Dialog(context);
                 modifyDeleteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 modifyDeleteDialog.setContentView(R.layout.dialog_context_long_press);
@@ -189,7 +189,7 @@ public class ContextCardAdapter extends BaseAdapter {
                 });
 
                 modifyDeleteDialog.show();
-                return false;
+                return;
             }
         });
 

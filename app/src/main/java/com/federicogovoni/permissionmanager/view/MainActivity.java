@@ -1,12 +1,10 @@
 package com.federicogovoni.permissionmanager.view;
 
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.pm.ApplicationInfo;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -15,12 +13,15 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -32,7 +33,6 @@ import com.federicogovoni.permissionmanager.utils.IabHelperInstance;
 import com.federicogovoni.permissionmanager.utils.LastFragmentUsed;
 import com.federicogovoni.permissionmanager.R;
 import com.federicogovoni.permissionmanager.utils.RootUtil;
-import com.federicogovoni.permissionmanager.controller.location.LocationService;
 import com.federicogovoni.permissionmanager.controller.PermissionsLoader;
 import com.federicogovoni.permissionmanager.view.fragment.ApplicationsFragment;
 import com.federicogovoni.permissionmanager.view.fragment.ContextsFragment;
@@ -74,7 +74,24 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerStateChanged(int stateChanged) {
+                super.onDrawerStateChanged(stateChanged);
+                try {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    //Find the currently focused view, so we can grab the correct window token from it.
+                    View focusedView = getCurrentFocus();
+                    //If no view currently has focus, create a new one, just so we can grab a window token from it
+                    if (focusedView == null) {
+                        focusedView = new View(MainActivity.this);
+                    }
+                    imm.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
+                } catch (Exception e) {
+
+                }
+            }
+        };
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -130,7 +147,7 @@ public class MainActivity extends AppCompatActivity
         //Mostro il dialog di impossibilità modificare i permessi
         boolean firstOpen = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(FIRST_OPEN, true);
         if (firstOpen && RootUtil.isDeviceRooted()) {
-            ApplicationInfo applicationInfo = PermissionsLoader.getInstance(this).searchApplicationInfoByPakcageName(this.getPackageName());
+            ApplicationInfo applicationInfo = PermissionsLoader.getInstance(this).searchApplicationInfoByPackageName(this.getPackageName());
             Permission permission = PermissionsLoader.getInstance(this).getAppPermissions(applicationInfo).get(0);
             boolean currentPermissionStatus = permission.check();
             boolean newPermissionStatus = permission.check() ? permission.revoke() : permission.grant();
