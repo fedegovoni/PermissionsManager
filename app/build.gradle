@@ -8,8 +8,8 @@ android {
         applicationId "com.federicogovoni.permissionsmanager"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 40
-        versionName "1.6.1"
+        versionCode 41
+        versionName "1.6.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
