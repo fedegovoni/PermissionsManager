@@ -2,8 +2,10 @@
   <component name="ConsoleFoldingSettings">
     <option name="addedPositive">
       <list>
-        <option value="2019-05-04 16:15:56.632 12149-12177/com.federicogovoni.messagereader E/libc: Access denied finding property &quot;vendor.debug.egl.swapinterval&quot;" />
         <option value="2019-05-04 16:15:56.614 12149-12177/com.federicogovoni.messagereader E/libc: Access denied finding property &quot;vendor.debug.egl.swapinterval&quot;" />
+        <option value="2019-05-04 16:15:56.632 12149-12177/com.federicogovoni.messagereader E/libc: Access denied finding property &quot;vendor.debug.egl.swapinterval&quot;" />
+        <option value="2019-05-04 16:40:57.022 14007-14038/com.federicogovoni.messagereader E/libc: Access denied finding property &quot;vendor.debug.egl.swapinterval&quot;" />
+        <option value="com.federicogovoni.messagereader E/libc: Access denied finding property" />
       </list>
     </option>
   </component>
