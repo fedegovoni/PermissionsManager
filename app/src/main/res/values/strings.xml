@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">Permissions Manager</string>
     <string name="permission_name" translatable="false">Permission Name</string>
     <string name="context_name">Context Name</string>
-    <string name="frequency" translatable="false">Frequency</string>
+    <string name="frequency">Frequency</string>
     <string name="apply_and_disable_times" translatable="false">HH/mm - HH/mm</string>
 
     <string name="title_activity_selected_app" translatable="false">SelectedAppActivity</string>
@@ -81,7 +81,7 @@
     <string name="ok" translatable="false">OK</string>
     <string name="dont_show_again">DON\'T SHOW AGAIN</string>
 
-    <string name="changelog">Changelog</string>
+    <string name="changelog" translatable="false">Changelog</string>
 
     <string name="distance_measure">Distance measure</string>
     <string name="applications">Applications</string>
@@ -94,11 +94,9 @@
     <string name="modify">Modify</string>
     <string name="delete">Delete</string>
 
-    <string name="changelog_content_title" translatable="false">Permissions Manager V 1.5.7</string>
+    <string name="changelog_content_title" translatable="false">Permissions Manager V 1.6.2</string>
     <string-array name="changelog_content_value">
-        <item>- Bug fix and minor improvements</item>
-        <item>- You can now buy pro version, which allows you to choose to don\'t receive notifications when a context is activated and deactivated and removes advertising. If you donated money to the developer in the past, you will get PRO version automatically ;).</item>
-        <item>- Fixed a bug that was causing on opening in Android 6.X.</item>
+        <item>- Now you can search across the applications list</item>
     </string-array>
 
     <string-array name="policy_types_array">

@@ -72,15 +72,12 @@
     <string name="share">Condividi</string>
     <string name="support">Pro</string>
 
-    <string name="changelog">Changelog</string>
     <string name="modify">Modifica</string>
     <string name="delete">Cancella</string>
 
     <string-array name="changelog_content_value">
-        <item>- Risoluzione di bug e piccoli miglioramenti.</item>
-        <item>- Ora puoi comprare la versione PRO, con la quale puoi decidere di non ricevere notifiche alla attivazione e disattivazione di contesti. Con la versione PRO inoltre verrà rimossa la pubblicità. Se hai fatto donazioni allo sviluppatore in passato, avrai la versione PRO ;).</item>
-        <item>- Risolto un bug che causava il crash all\' apertura dell\'app in Android 6.X.</item>
-    </string-array>
+        <item>- Ora puoi cercare tra le applicazioni disponibili</item>
+      </string-array>
 
     <string-array name="policy_types_array">
         <item>Nessun tipo selezionato</item>
@@ -127,5 +124,6 @@
     <string name="not_working_text">Sembra che il tuo dispositivo non supporti il cambio di permessi via ADB, a causa di ciò l\'app potrebbe non riuscire a svolgere il suo compito. :(</string>
     <string name="get_pro_purchase_price">1,29 €</string>
     <string name="fragment_settings_pro_title">PRO</string>
+    <string name="frequency">Frequenza</string>
 
 </resources>

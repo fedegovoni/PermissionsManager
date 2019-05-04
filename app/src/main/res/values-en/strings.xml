@@ -66,8 +66,6 @@
 
     <string name="dont_show_again">DON\'T SHOW AGAIN</string>
 
-    <string name="changelog">Changelog</string>
-
     <string name="distance_measure">Distance measure</string>
     <string name="applications">Applications</string>
 
@@ -79,9 +77,7 @@
     <string name="delete">Delete</string>
 
     <string-array name="changelog_content_value">
-        <item>- Bug fix and minor improvements</item>
-        <item>- You can now buy pro version, which allows you to choose to don\'t receive notifications when a context is activated and deactivated and removes advertising. If you donated money to the developer in the past, you will get PRO version automatically ;).</item>
-        <item>- Fixed a bug that was causing on opening in Android 6.X.</item>
+        <item>- Now you can search across the applications list</item>
     </string-array>
 
 
@@ -130,6 +126,7 @@
     <string name="not_working_text">Seems that this device doesn\'t support permissions changing via ADB, this means that Permission\'s Manager couldn\'t work properly. :(</string>
     <string name="get_pro_purchase_price" translatable="false">1,29 $</string>
     <string name="fragment_settings_pro_title">Pro only</string>
+    <string name="frequency">Frequency</string>
 
 
 </resources>
