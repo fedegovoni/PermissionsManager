@@ -1,11 +1,88 @@
 <application>
   <component name="ConsoleFoldingSettings">
-    <option name="addedPositive">
+    <option name="removedPositive">
       <list>
-        <option value="2019-05-04 16:15:56.614 12149-12177/com.federicogovoni.messagereader E/libc: Access denied finding property &quot;vendor.debug.egl.swapinterval&quot;" />
-        <option value="2019-05-04 16:15:56.632 12149-12177/com.federicogovoni.messagereader E/libc: Access denied finding property &quot;vendor.debug.egl.swapinterval&quot;" />
-        <option value="2019-05-04 16:40:57.022 14007-14038/com.federicogovoni.messagereader E/libc: Access denied finding property &quot;vendor.debug.egl.swapinterval&quot;" />
-        <option value="com.federicogovoni.messagereader E/libc: Access denied finding property" />
+        <option value="at java.security.ProtectionDomain$1.doIntersectionPrivilege(" />
+        <option value="at org.junit.platform." />
+        <option value="at junit.framework.Assert.assert" />
+        <option value="at org.jetbrains.plugins.gradle." />
+        <option value="at junit.framework.Assert.fail" />
+        <option value="at org.junit.jupiter.api.AssertEquals.assertEquals(" />
+        <option value="at org.codehaus.groovy." />
+        <option value="at java.awt.Component.processMouseEvent(" />
+        <option value="at org.junit.jupiter." />
+        <option value="at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(" />
+        <option value="at org.junit.runners." />
+        <option value="at java.util.stream.AbstractPipeline.copyInto(" />
+        <option value="at java.awt.Component.processEvent(" />
+        <option value="at javax.swing.plaf.basic.BasicComboPopup$Handler.mouseReleased(" />
+        <option value="at javax.swing.AbstractButton$Handler.actionPerformed(" />
+        <option value="at org.junit.Assert.failNotSame(" />
+        <option value="at java.security.AccessController.doPrivileged(Native Method)" />
+        <option value="at javax.swing.DefaultButtonModel.setPressed(" />
+        <option value="at com.jgoodies.binding.beans.ExtendedPropertyChangeSupport.firePropertyChange0(" />
+        <option value="at java.awt.Container.dispatchEventImpl(" />
+        <option value="at java.util.stream.AbstractPipeline.evaluate(" />
+        <option value="at javax.swing.AbstractButton.fireActionPerformed(" />
+        <option value="at java.awt.EventQueue" />
+        <option value="at com.intellij.junit5." />
+        <option value="at org.junit.runner.JUnitCore." />
+        <option value="at org.testng.TestRunner." />
+        <option value="at javax.swing.JComponent.processMouseEvent(" />
+        <option value="at org.junit.jupiter.api.Assertions.assertEquals(" />
+        <option value="at java.awt.event.InvocationEvent.dispatch(" />
+        <option value="at sun.rmi." />
+        <option value="at java.awt.EventDispatchThread" />
+        <option value="java.lang.reflect.Constructor.newInstance(" />
+        <option value="java.lang.reflect.Method.invoke(" />
+        <option value="at java.awt.EventQueue.dispatchEventImpl(" />
+        <option value="at junit.framework.TestResult" />
+        <option value="at junit.framework.TestCase.run" />
+        <option value="at sun.reflect." />
+        <option value="at org.testng.SuiteRunner." />
+        <option value="at java.security.AccessControlContext$1.doIntersectionPrivilege(" />
+        <option value="at junit.framework.TestSuite.run" />
+        <option value="at org.junit.vintage." />
+        <option value="at java.awt.Component.dispatchEventImpl(" />
+        <option value="at java.awt.Container.processEvent(" />
+        <option value="at org.junit.Assert.failSame(" />
+        <option value="at java.base/jdk.internal" />
+        <option value="at java.util.stream.AbstractPipeline.wrapAndCopyInto(" />
+        <option value="at java.rmi." />
+        <option value="at java.util.stream.ReferencePipeline$" />
+        <option value="at org.junit.Assert.fail(" />
+        <option value="at org.junit.internal.runners." />
+        <option value="at java.awt.Window.dispatchEventImpl(" />
+        <option value="at com.intellij.junit4." />
+        <option value="at com.intellij.openapi.externalSystem." />
+        <option value="at org.junit.jupiter.api.AssertionUtils.fail(" />
+        <option value="at java.util.Spliterators$" />
+        <option value="at java.awt.Component.dispatchEvent(" />
+        <option value="at org.gradle." />
+        <option value="at org.testng.TestNG.run" />
+        <option value="at org.junit.internal.ComparisonCriteria.arrayEquals(" />
+        <option value="at org.junit.Assert.assert" />
+        <option value="at com.sun.proxy.$Proxy" />
+        <option value="at com.intellij.rt.execution." />
+        <option value="at javax.swing.plaf.basic.BasicMenuItemUI" />
+        <option value="at javax.swing.DefaultButtonModel.fireActionPerformed(" />
+        <option value="at junit.framework.TestCase.assert" />
+        <option value="at org.junit.rules." />
+        <option value="at com.intellij.junit3." />
+        <option value="at org.junit.Assert.internalArrayEquals(" />
+        <option value="at java.awt.LightweightDispatcher." />
+        <option value="at groovy." />
+        <option value="at java.util.stream.ReduceOps$" />
+        <option value="at javax.swing.AbstractButton.doClick(" />
+        <option value="at org.junit.jupiter.api.AssertEquals.failNotEqual(" />
+        <option value="at org.testng.internal." />
+      </list>
+    </option>
+    <option name="removedNegative">
+      <list>
+        <option value="at org.codehaus.groovy.runtime.DefaultGroovyMethods." />
+        <option value="at org.codehaus.groovy.vmplugin.v5.PluginDefaultGroovyMethods." />
+        <option value="at org.codehaus.groovy.runtime.DefaultGroovyMethodsSupport." />
       </list>
     </option>
   </component>
