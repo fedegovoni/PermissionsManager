@@ -1,5 +1,11 @@
 <application>
   <component name="ConsoleFoldingSettings">
+    <option name="addedPositive">
+      <list>
+        <option value="E/bt_osi_wakelock: wakelock_release wakelock" />
+        <option value="E/bt_osi_wakelock: wakelock_acquire wakelock" />
+      </list>
+    </option>
     <option name="removedPositive">
       <list>
         <option value="at java.security.ProtectionDomain$1.doIntersectionPrivilege(" />
