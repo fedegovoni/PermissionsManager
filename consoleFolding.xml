@@ -2,8 +2,9 @@
   <component name="ConsoleFoldingSettings">
     <option name="addedPositive">
       <list>
-        <option value="E/bt_osi_wakelock: wakelock_release wakelock" />
+        <option value="Access denied finding property &quot;vendor." />
         <option value="E/bt_osi_wakelock: wakelock_acquire wakelock" />
+        <option value="E/bt_osi_wakelock: wakelock_release wakelock" />
       </list>
     </option>
     <option name="removedPositive">
