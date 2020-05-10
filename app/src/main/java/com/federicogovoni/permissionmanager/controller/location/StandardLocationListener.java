@@ -5,9 +5,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.federicogovoni.permissionmanager.controller.ContextManager;
 import com.federicogovoni.permissionmanager.model.CurrentContext;

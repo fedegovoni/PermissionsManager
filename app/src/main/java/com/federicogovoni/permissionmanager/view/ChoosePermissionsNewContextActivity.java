@@ -5,14 +5,14 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
 
 import com.federicogovoni.permissionmanager.controller.ProVersionChecker;
 import com.federicogovoni.permissionmanager.model.CurrentContext;
@@ -26,6 +26,7 @@ import com.federicogovoni.permissionmanager.controller.PermissionsLoader;
 import com.federicogovoni.permissionmanager.view.adapter.AppPermissionsExpandableListAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 import java.util.Map;

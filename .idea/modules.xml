@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Donations/Donations.iml" filepath="$PROJECT_DIR$/Donations/Donations.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PermissionsManager.iml" filepath="$PROJECT_DIR$/PermissionsManager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Donations/Donations.iml" filepath="$PROJECT_DIR$/Donations/Donations.iml" group="PermissionsManager/Donations" />
+      <module fileurl="file://$PROJECT_DIR$/PermissionsManager.iml" filepath="$PROJECT_DIR$/PermissionsManager.iml" group="PermissionsManager" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="PermissionsManager/app" />
     </modules>
   </component>
 </project>

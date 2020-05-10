@@ -6,8 +6,9 @@ import android.content.Context;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.federicogovoni.permissionmanager.controller.ContextManager;
 
