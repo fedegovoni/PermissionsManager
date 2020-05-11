@@ -38,6 +38,7 @@ import com.federicogovoni.permissionmanager.view.fragment.GetProFragment;
 import com.federicogovoni.permissionmanager.view.fragment.SettingsFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 
 import java.lang.ref.WeakReference;
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity
         ProVersionChecker.getInstance(this, iabHelper).checkPro();
 
         new BackgroundLoaderTask(this).execute();
-
 
         //check if the background location service is running and then start it.
         GeneralUtils.checkAndStartLocationService(getApplicationContext());
