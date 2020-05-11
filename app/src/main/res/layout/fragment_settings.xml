@@ -10,7 +10,7 @@
     android:paddingEnd="8dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fragment_settings_distance_unit_text_input_layout"
         android:layout_width="match_parent"
         android:hint="@string/type"
@@ -39,9 +39,9 @@
             android:maxLength="20"
             android:textColorHint="#000000"
             android:textSize="18sp" />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fragment_settings_applications_list_text_input_layout"
         android:layout_below="@id/fragment_settings_distance_unit_text_input_layout"
         android:layout_width="match_parent"
@@ -71,9 +71,9 @@
             android:maxLength="20"
             android:textColorHint="#000000"
             android:textSize="18sp" />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
 
         android:id="@+id/fragment_settings_pro_label_text_view"
         android:layout_below="@id/fragment_settings_applications_list_text_input_layout"
@@ -86,7 +86,7 @@
         android:textColor="@color/colorAccent"
         android:text="@string/fragment_settings_pro_title"/>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fragment_settings_receive_notifications_text_input_layout"
         android:layout_below="@id/fragment_settings_pro_label_text_view"
         android:layout_width="match_parent"
@@ -125,7 +125,7 @@
 
         </LinearLayout>
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fragment_settings_ad_view"

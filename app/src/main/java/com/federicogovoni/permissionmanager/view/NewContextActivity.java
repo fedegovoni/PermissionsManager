@@ -48,6 +48,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import static com.federicogovoni.permissionmanager.R.id.activity_new_context_friday_checked_text_view;
 import static com.federicogovoni.permissionmanager.R.id.activity_new_context_monday_checked_text_view;

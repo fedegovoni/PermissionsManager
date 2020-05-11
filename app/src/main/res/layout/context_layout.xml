@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/context_layout_card_view"
         android:layout_gravity="center"
         android:layout_width="match_parent"
@@ -114,5 +114,5 @@
             </RelativeLayout>
         </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

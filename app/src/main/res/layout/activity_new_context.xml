@@ -25,7 +25,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_name_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_centerHorizontal="true"
@@ -40,9 +40,9 @@
                     android:inputType="text|textCapSentences"
                     android:maxLength="20"
                     android:textSize="18sp" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_frequency_text_input_layout"
                 android:layout_width="match_parent"
                 android:hint="Type"
@@ -71,9 +71,9 @@
                     android:maxLength="20"
                     android:textColorHint="#000000"
                     android:textSize="18sp" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_week_bar_text_input_layout"
                 android:layout_width="match_parent"
                 android:hint="@string/type"
@@ -195,9 +195,9 @@
                         android:layout_marginTop="4dp"/>
 
                 </RelativeLayout>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_activation_date_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_below="@id/activity_new_context_week_bar_text_input_layout"
@@ -214,9 +214,9 @@
                     android:maxLength="20"
                     android:textSize="18sp"
                     android:focusable="false"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_activation_time_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_below="@id/activity_new_context_activation_date_text_input_layout"
@@ -232,9 +232,9 @@
                     android:maxLength="20"
                     android:textSize="18sp"
                     android:focusable="false"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_attention_label_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_below="@id/activity_new_context_activation_time_text_input_layout"
@@ -251,9 +251,9 @@
                     android:textColor="#000000"
                     android:text="@string/deactivation_before_activation_error"
                     android:textSize="15sp"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_deactivation_date_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_below="@id/activity_new_context_attention_label_text_input_layout"
@@ -270,9 +270,9 @@
                     android:maxLength="20"
                     android:textSize="18sp"
                     android:focusable="false"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_deactivation_time_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_below="@id/activity_new_context_deactivation_date_text_input_layout"
@@ -288,9 +288,9 @@
                     android:maxLength="20"
                     android:textSize="18sp"
                     android:focusable="false"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_address_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_below="@id/activity_new_context_deactivation_time_text_input_layout"
@@ -303,9 +303,9 @@
                     android:hint="@string/address"
                     android:textSize="18sp"
                     android:focusable="false"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_new_context_radius_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_below="@id/activity_new_context_address_text_input_layout"
@@ -319,7 +319,7 @@
                     android:inputType="number"
                     android:textSize="18sp"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/activity_new_context_next_button"

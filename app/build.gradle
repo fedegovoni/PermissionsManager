@@ -1,5 +1,7 @@
 //noinspection GradleCompatible
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
 
 android {
     compileSdkVersion 28
@@ -10,6 +12,7 @@ android {
         targetSdkVersion 28
         versionCode 41
         versionName "1.6.2"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -53,6 +56,7 @@ dependencies {
     //location and places services
     implementation "com.google.android.gms:play-services-location:17.0.0"
     implementation 'com.google.android.gms:play-services-places:17.0.0'
+    implementation 'com.google.android.libraries.places:places:2.2.0'
 
     //JUnit test
     implementation 'junit:junit:4.12'
@@ -66,4 +70,7 @@ dependencies {
 
     //logging - timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //analytics
+    implementation 'com.google.firebase:firebase-analytics:17.4.1'
 }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "700320032670",
+    "firebase_url": "https://permissions-manager-2ccc1.firebaseio.com",
+    "project_id": "permissions-manager-2ccc1",
+    "storage_bucket": "permissions-manager-2ccc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700320032670:android:2e216fe4cd316cb596188f",
+        "android_client_info": {
+          "package_name": "com.federicogovoni.permissionsmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700320032670-n13b2si95slnftat97bihgaplcvn54ce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc6axdQlzAw2haehj6d6XBQSEYwv7dXyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700320032670-n13b2si95slnftat97bihgaplcvn54ce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
