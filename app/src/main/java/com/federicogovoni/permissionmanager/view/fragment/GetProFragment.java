@@ -29,20 +29,25 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.federicogovoni.permissionmanager.R;
 
+import com.federicogovoni.permissionmanager.billing.IabException;
 import com.federicogovoni.permissionmanager.billing.IabHelper;
 import com.federicogovoni.permissionmanager.billing.IabResult;
+import com.federicogovoni.permissionmanager.billing.Inventory;
 import com.federicogovoni.permissionmanager.billing.Purchase;
 import com.federicogovoni.permissionmanager.controller.ProVersionChecker;
 import com.federicogovoni.permissionmanager.utils.AdRequestKeeper;
 import com.federicogovoni.permissionmanager.utils.IabHelperInstance;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+
+import timber.log.Timber;
 
 public class GetProFragment extends Fragment {
 
@@ -193,6 +198,18 @@ public class GetProFragment extends Fragment {
                     donateGoogleOnClick(v);
                 }
             });
+
+            //imposto il valore del prezzo
+            TextView priceText = getActivity().findViewById(R.id.fragment_get_pro_price_text_view);
+            try {
+                Inventory inventory = IabHelperInstance.getInstance().queryInventory();
+                //@todo inserire il prezzo dinamicamente
+                priceText.setText("jioj");
+            } catch (IabException e) {
+                Timber.e(e.getResult());
+                e.printStackTrace();
+            }
+
 
             try {
                 if (ProVersionChecker.getInstance().checkPro()) {
