@@ -42,6 +42,8 @@
     <string name="no_root_title">Root required:</string>
     <string name="no_root_text">Seems that this device can\'t gain root privileges. You won\'t be able to manage applications permissions. If you\'d like to unlock this function, please root your device.</string>
 
+    <string name="snackbar_no_priviliges">Sorry, it\'s not possible to modify permission :(</string>
+
     <string name="not_working_title">Ops! Compatibility issues:</string>
     <string name="not_working_text">Seems that this device doesn\'t support permissions changing via ADB, this means that Permission\'s Manager couldn\'t work properly. :(</string>
 
@@ -96,7 +98,7 @@
 
     <string name="changelog_content_title" translatable="false">Permissions Manager V 1.6.2</string>
     <string-array name="changelog_content_value">
-        <item>- Now you can search across the applications list</item>
+        <item>- Improved error management</item>
     </string-array>
 
     <string-array name="policy_types_array">

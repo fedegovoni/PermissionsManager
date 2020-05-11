@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import com.federicogovoni.permissionmanager.model.TimeContext;
 import com.federicogovoni.permissionmanager.utils.TmpContextKeeper;
 import com.federicogovoni.permissionmanager.controller.ContextManager;
 import com.federicogovoni.permissionmanager.view.fragment.SettingsFragment;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -50,12 +52,14 @@ public class ContextCardAdapter extends BaseAdapter {
     private List<CurrentContext> contexts;
     private final Context context;
     private LayoutInflater inflater;
+    private FirebaseAnalytics firebaseAnalytics;
 
     public ContextCardAdapter(Context context) {
         super();
         contexts = ContextManager.getInstance(context).getContexts();
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        this.firebaseAnalytics = FirebaseAnalytics.getInstance(context);
     }
 
     @Override
@@ -185,6 +189,10 @@ public class ContextCardAdapter extends BaseAdapter {
                             rl.setVisibility(View.GONE);
                             noContext.setVisibility(View.VISIBLE);
                         }
+                        Bundle bundle = new Bundle();
+                        bundle.putString("DELETE_CONTEXT", "Deleted existing context");
+                        firebaseAnalytics.logEvent("DELETE_CONTEXT", bundle);
+
                     }
                 });
 

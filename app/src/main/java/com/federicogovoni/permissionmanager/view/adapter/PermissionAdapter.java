@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,16 @@ import android.widget.TextView;
 
 import com.federicogovoni.permissionmanager.model.Permission;
 import com.federicogovoni.permissionmanager.R;
+import com.federicogovoni.permissionmanager.utils.GeneralUtils;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import timber.log.Timber;
 
 /**
  * Created by Federico on 28/02/2017.
@@ -29,6 +35,7 @@ public class PermissionAdapter extends BaseAdapter {
     Context mContext;
     private LayoutInflater inflater;
     private ApplicationInfo mApplicationInfo;
+    private FirebaseAnalytics firebaseAnalytics;
 
     public static final int ROW_HEADER = 0;
     public static final int ROW_NO_HEADER = 1;
@@ -50,6 +57,7 @@ public class PermissionAdapter extends BaseAdapter {
         this.mContext=context;
         this.mApplicationInfo = applicationInfo;
         this.inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        this.firebaseAnalytics = FirebaseAnalytics.getInstance(context);
     }
 
     @Override
@@ -95,10 +103,37 @@ public class PermissionAdapter extends BaseAdapter {
 
         viewHolder.mySwitch.setOnClickListener(new Switch.OnClickListener() {
             public void onClick(View view) {
-                if (mContext.getPackageManager().checkPermission(permission.getName(), permission.getPackageName()) == PackageManager.PERMISSION_GRANTED)
-                    permission.revoke();
-                else
-                    permission.grant();
+                boolean success;
+                if (mContext.getPackageManager().checkPermission(permission.getName(), permission.getPackageName()) == PackageManager.PERMISSION_GRANTED) {
+                    success = permission.revoke();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.SOURCE, "Permission Manual Change");
+                    bundle.putString(FirebaseAnalytics.Param.METHOD, "Revoke");
+                    bundle.putString(FirebaseAnalytics.Param.SUCCESS, "" + success);
+                    firebaseAnalytics.logEvent("PERMISSION_MANUAL_CHANGE", bundle);
+                    Timber.d("Firebase - Logged analytics event");
+
+                    if(!success) {
+                        Timber.e("Manual revoke failed");
+                        ((Switch) view).setChecked(true);
+                        GeneralUtils.showSnackbar(view, mContext.getResources().getString(R.string.snackbar_no_priviliges));
+                    }
+
+                } else {
+                    success = permission.grant();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.SOURCE, "Permission Manual Change");
+                    bundle.putString(FirebaseAnalytics.Param.METHOD, "Grant");
+                    bundle.putString(FirebaseAnalytics.Param.SUCCESS, "" + success);
+                    firebaseAnalytics.logEvent("PERMISSION_MANUAL_CHANGE", bundle);
+                    Timber.d("Firebase - Logged analytics event");
+
+                    if(!success) {
+                        Timber.e("Manual grant failed");
+                        ((Switch) view).setChecked(false);
+                        GeneralUtils.showSnackbar(view, mContext.getResources().getString(R.string.snackbar_no_priviliges));
+                    }
+                }
             }
         });
 

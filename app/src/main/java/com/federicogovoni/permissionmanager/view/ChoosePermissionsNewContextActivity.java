@@ -27,6 +27,7 @@ import com.federicogovoni.permissionmanager.view.adapter.AppPermissionsExpandabl
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,7 @@ public class ChoosePermissionsNewContextActivity extends AppCompatActivity imple
     private CurrentContext toCreate;
     private AppPermissionsExpandableListAdapter adapter;
     private AdView mAdView;
+    private FirebaseAnalytics firebaseAnalytics;
     private SearchView searchView;
 
     @SuppressLint("StaticFieldLeak")
@@ -47,6 +49,8 @@ public class ChoosePermissionsNewContextActivity extends AppCompatActivity imple
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_permissions_new_context);
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Sample AdMob app ID: ca-app-pub-9125265928210219~3176045725
         mAdView = findViewById(R.id.adView_choose_permissions_new_context_activity);
@@ -113,6 +117,10 @@ public class ChoosePermissionsNewContextActivity extends AppCompatActivity imple
                     intent = new Intent(ChoosePermissionsNewContextActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("CONTEXT_CREATION", "New context created");
+                    firebaseAnalytics.logEvent("CONTEXT_CREATION", bundle);
                 }
                 ChoosePermissionsNewContextActivity.this.startActivity(intent);
                 finish();

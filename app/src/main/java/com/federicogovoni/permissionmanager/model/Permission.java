@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.federicogovoni.permissionmanager.R;
 import com.federicogovoni.permissionmanager.controller.PermissionGroupAssociation;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -96,7 +97,8 @@ public class Permission implements Comparable<Permission>{
             e.printStackTrace();
             return false;
         }
-        return true;
+        //si è concluso con successo se il permesso non è concesso
+        return !check();
     }
 
     public boolean grant() {
@@ -112,8 +114,11 @@ public class Permission implements Comparable<Permission>{
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+        } finally {
+
         }
-        return true;
+        //si è concluso con successo se il permesso è concesso
+        return check();
     }
 
     @Override

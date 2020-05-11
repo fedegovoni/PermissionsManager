@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Donations/Donations.iml" filepath="$PROJECT_DIR$/Donations/Donations.iml" group="PermissionsManager/Donations" />
       <module fileurl="file://$PROJECT_DIR$/PermissionsManager.iml" filepath="$PROJECT_DIR$/PermissionsManager.iml" group="PermissionsManager" />
+      <module fileurl="file://$PROJECT_DIR$/Donations/PermissionsManager-Donations.iml" filepath="$PROJECT_DIR$/Donations/PermissionsManager-Donations.iml" group="PermissionsManager/Donations" />
+      <module fileurl="file://$PROJECT_DIR$/app/PermissionsManager-app.iml" filepath="$PROJECT_DIR$/app/PermissionsManager-app.iml" group="PermissionsManager/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="PermissionsManager/app" />
     </modules>
   </component>

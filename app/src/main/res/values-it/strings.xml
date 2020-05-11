@@ -34,6 +34,8 @@
     <string name="invalid_radius">Raggio non valido, raggio posto al valore di default </string>
     <string name="denied_position">Permesso negato: impossibile leggere la Posizione</string>
 
+    <string name="snackbar_no_priviliges">Scusa, non è possibile modificare il permesso :(</string>
+
     <string name="context_name">Nome del contesto</string>
     <string name="activation_frequency">Frequenza di attivazione</string>
     <string name="type">Tipo</string>
@@ -76,7 +78,7 @@
     <string name="delete">Cancella</string>
 
     <string-array name="changelog_content_value">
-        <item>- Ora puoi cercare tra le applicazioni disponibili</item>
+        <item>- Migliorata la gestione degli errori</item>
       </string-array>
 
     <string-array name="policy_types_array">

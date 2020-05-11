@@ -39,6 +39,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -64,6 +65,7 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
     private String city = null;
     private boolean waitingForPlacePicker = false;
     private AdView mAdView;
+    private FirebaseAnalytics firebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,8 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
         mAdView = findViewById(R.id.activity_new_context_ad_view);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         CurrentContext toModify = TmpContextKeeper.getInstance().getCurrentContext();
         if(toModify.getLocationContext() != null) {
@@ -312,6 +316,11 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
 
                         } catch (GooglePlayServicesRepairableException
                                 | GooglePlayServicesNotAvailableException e) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString(FirebaseAnalytics.Param.SOURCE, "Create Context");
+                            bundle.putString(FirebaseAnalytics.Param.METHOD, "Show PlacePicker");
+                            bundle.putString(FirebaseAnalytics.Param.SUCCESS, "False");
+                            firebaseAnalytics.logEvent("create_context", bundle);
                             e.printStackTrace();
                         }
                     }

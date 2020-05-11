@@ -8,10 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
 
 import com.federicogovoni.permissionmanager.controller.location.LocationJobService;
 import com.federicogovoni.permissionmanager.controller.location.LocationService;
 import com.federicogovoni.permissionmanager.controller.location.OreoLocationListener;
+import com.google.android.material.snackbar.Snackbar;
 
 import timber.log.Timber;
 
@@ -51,5 +53,9 @@ public class GeneralUtils {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void showSnackbar (View view, String snackbarMessage) {
+        Snackbar.make(view, snackbarMessage, Snackbar.LENGTH_SHORT).show();
     }
 }

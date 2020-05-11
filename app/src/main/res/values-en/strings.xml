@@ -31,8 +31,10 @@
     <string name="new_context">New context</string>
 
     <string name="fill_each_field">Fill each requested field!</string>
-    <string name="invalid_radius">Invalid radius, radius setted to default value </string>
+    <string name="invalid_radius">Invalid radius, radius set to default value </string>
     <string name="denied_position">Permission denied, impossible to read Position</string>
+
+    <string name="snackbar_no_priviliges">Sorry, it\'s not possible to modify permission :(</string>
 
     <string name="support">Get pro</string>
 
@@ -77,7 +79,7 @@
     <string name="delete">Delete</string>
 
     <string-array name="changelog_content_value">
-        <item>- Now you can search across the applications list</item>
+        <item>- Improved error management</item>
     </string-array>
 
 
