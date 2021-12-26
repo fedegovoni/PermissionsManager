@@ -18,12 +18,9 @@ import com.federicogovoni.permissionmanager.utils.TmpContextKeeper;
 import com.federicogovoni.permissionmanager.controller.ContextManager;
 import com.federicogovoni.permissionmanager.view.NewContextActivity;
 import com.federicogovoni.permissionmanager.view.adapter.ContextCardAdapter;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 public class ContextsFragment extends Fragment {
 
-    private AdView mAdView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,27 +32,18 @@ public class ContextsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle(R.string.contexts);
 
-        // Sample AdMob app ID: ca-app-pub-9125265928210219~3176045725
-        mAdView = getActivity().findViewById(R.id.fragment_contexts_ad_view);
-        AdRequest adRequest = AdRequestKeeper.getAdRequest(getActivity());
-        mAdView.loadAd(adRequest);
 
-        try {
-            if (ProVersionChecker.getInstance().checkPro()) {
-                getActivity().findViewById(R.id.fragment_contexts_ad_view).setVisibility(View.GONE);
+        ProVersionChecker.checkIfPro(getContext(), isPro -> {
 
-                View buttonView = getActivity().findViewById(R.id.fragment_contexts_add_context_button);
-                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) buttonView.getLayoutParams();
-                layoutParams.setMargins(0, 0, layoutParams.getMarginEnd(), layoutParams.getMarginEnd());
-                buttonView.setLayoutParams(layoutParams);
+            View buttonView = getActivity().findViewById(R.id.fragment_contexts_add_context_button);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) buttonView.getLayoutParams();
+            layoutParams.setMargins(0, 0, layoutParams.getMarginEnd(), layoutParams.getMarginEnd());
+            buttonView.setLayoutParams(layoutParams);
 
-                View listView =  getActivity().findViewById(R.id.fragment_contexts_main_list_view);
-                float density = getResources().getDisplayMetrics().density;
-                listView.setPadding(0,0,0,Math.round((float) 80 * density));
-            }
-        } catch (NullPointerException e) {
-        }
-
+            View listView =  getActivity().findViewById(R.id.fragment_contexts_main_list_view);
+            float density = getResources().getDisplayMetrics().density;
+            listView.setPadding(0,0,0,Math.round((float) 80 * density));
+        });
         getActivity().findViewById(R.id.fragment_contexts_add_context_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

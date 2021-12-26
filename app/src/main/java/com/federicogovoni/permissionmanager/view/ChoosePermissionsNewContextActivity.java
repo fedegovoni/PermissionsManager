@@ -36,7 +36,7 @@ import timber.log.Timber;
 
 import static com.federicogovoni.permissionmanager.controller.PermissionsLoader.getInstance;
 
-public class ChoosePermissionsNewContextActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ChoosePermissionsNewContextActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, ProVersionChecker.IProVersionListener {
 
     private CurrentContext toCreate;
     private AppPermissionsExpandableListAdapter adapter;
@@ -57,21 +57,7 @@ public class ChoosePermissionsNewContextActivity extends AppCompatActivity imple
         AdRequest adRequest = AdRequestKeeper.getAdRequest(this);
         mAdView.loadAd(adRequest);
 
-        try {
-            if (ProVersionChecker.getInstance().checkPro()) {
-                findViewById(R.id.adView_choose_permissions_new_context_activity).setVisibility(View.GONE);
-
-                View buttonView = findViewById(R.id.activity_choose_permissions_new_context_floating_action_button);
-                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) buttonView.getLayoutParams();
-                layoutParams.setMargins(0, 0, layoutParams.getMarginEnd(), layoutParams.getMarginEnd());
-                buttonView.setLayoutParams(layoutParams);
-
-                View listView =  findViewById(R.id.activity_choose_permissions_new_context_expandable_list_view);
-                float density = getResources().getDisplayMetrics().density;
-                listView.setPadding(0,0,0,Math.round((float) 100 * density));
-            }
-        } catch (NullPointerException e) {
-        }
+        ProVersionChecker.checkIfPro(this, this);
 
         toCreate = TmpContextKeeper.getInstance().getCurrentContext();
         final String type = getIntent().getStringExtra("TYPE");
@@ -176,5 +162,21 @@ public class ChoosePermissionsNewContextActivity extends AppCompatActivity imple
                 listView.setAdapter(adapter);
             }
         });
+    }
+
+    @Override
+    public void onProVersionResult(boolean isPro) {
+        if(isPro) {
+            findViewById(R.id.adView_choose_permissions_new_context_activity).setVisibility(View.GONE);
+
+            View buttonView = findViewById(R.id.activity_choose_permissions_new_context_floating_action_button);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) buttonView.getLayoutParams();
+            layoutParams.setMargins(0, 0, layoutParams.getMarginEnd(), layoutParams.getMarginEnd());
+            buttonView.setLayoutParams(layoutParams);
+
+            View listView =  findViewById(R.id.activity_choose_permissions_new_context_expandable_list_view);
+            float density = getResources().getDisplayMetrics().density;
+            listView.setPadding(0,0,0,Math.round((float) 100 * density));
+        }
     }
 }

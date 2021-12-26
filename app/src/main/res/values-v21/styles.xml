@@ -5,5 +5,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="colorSurface">@android:color/background_light</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

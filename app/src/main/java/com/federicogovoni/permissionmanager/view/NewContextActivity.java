@@ -33,6 +33,8 @@ import com.federicogovoni.permissionmanager.utils.TmpContextKeeper;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -49,7 +51,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 
 import static com.federicogovoni.permissionmanager.R.id.activity_new_context_friday_checked_text_view;
 import static com.federicogovoni.permissionmanager.R.id.activity_new_context_monday_checked_text_view;
@@ -59,7 +60,9 @@ import static com.federicogovoni.permissionmanager.R.id.activity_new_context_thu
 import static com.federicogovoni.permissionmanager.R.id.activity_new_context_tuesday_checked_text_view;
 import static com.federicogovoni.permissionmanager.R.id.activity_new_context_wednesday_checked_text_view;
 
-public class NewContextActivity extends AppCompatActivity implements View.OnClickListener {
+import timber.log.Timber;
+
+public class NewContextActivity extends AppCompatActivity implements View.OnClickListener, ProVersionChecker.IProVersionListener {
 
     private LatLng latlng = null;
     private String city = null;
@@ -84,14 +87,7 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
         final EditText addressEditText = (EditText) findViewById(R.id.activity_new_context_address_edit_text);
         final Button nextButton = (Button) findViewById(R.id.activity_new_context_next_button);
 
-
-
-
-        // Sample AdMob app ID: ca-app-pub-9125265928210219~3176045725
-        MobileAds.initialize(this, "ca-app-pub-9125265928210219~3176045725");
-        mAdView = findViewById(R.id.activity_new_context_ad_view);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        initAdvertising();
 
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -108,17 +104,16 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
             setTitle(getResources().getString(R.string.new_context));
         }
 
-        try {
-            if (ProVersionChecker.getInstance().checkPro()) {
+        ProVersionChecker.checkIfPro(this, (isPro)-> {
+            if(isPro) {
                 findViewById(R.id.activity_new_context_ad_view).setVisibility(View.GONE);
                 View scrollView = findViewById(R.id.activity_new_context_scroll_view);
                 RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) scrollView.getLayoutParams();
                 layoutParams.setMargins(0, 0, layoutParams.getMarginEnd(), layoutParams.getMarginEnd());
                 scrollView.setLayoutParams(layoutParams);
             }
+        });
 
-        } catch (NullPointerException e){
-        }
 
         final List<CheckedTextView> daysOfWeekCTV = new ArrayList<>();
 
@@ -439,6 +434,7 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case 1: {
                 if (grantResults.length > 0
@@ -469,4 +465,22 @@ public class NewContextActivity extends AppCompatActivity implements View.OnClic
         waitingForPlacePicker = false;
     }
 
+    private void initAdvertising() {
+        //inizializzazione degli ads
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                Timber.v("ADS Initialization completed with status: %s", initializationStatus);
+            }
+        });
+
+        //Ads piedi pagina
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
+    @Override
+    public void onProVersionResult(boolean isPro) {
+        mAdView.setVisibility(isPro ? View.GONE : View.VISIBLE);
+    }
 }

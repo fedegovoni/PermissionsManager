@@ -1,5 +1,7 @@
 package com.federicogovoni.permissionmanager.view;
 
+import static com.federicogovoni.permissionmanager.Constants.FIRST_OPEN;
+
 import android.app.Activity;
 import android.content.pm.ApplicationInfo;
 import android.content.ActivityNotFoundException;
@@ -8,11 +10,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.ContextThemeWrapper;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,13 +23,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.federicogovoni.permissionmanager.billing.IabHelper;
+import com.federicogovoni.permissionmanager.Constants;
 import com.federicogovoni.permissionmanager.controller.ProVersionChecker;
 import com.federicogovoni.permissionmanager.model.Permission;
+import com.federicogovoni.permissionmanager.utils.AdRequestKeeper;
 import com.federicogovoni.permissionmanager.utils.GeneralUtils;
-import com.federicogovoni.permissionmanager.utils.IabHelperInstance;
 import com.federicogovoni.permissionmanager.utils.LastFragmentUsed;
 import com.federicogovoni.permissionmanager.R;
 import com.federicogovoni.permissionmanager.utils.RootUtil;
@@ -36,23 +36,20 @@ import com.federicogovoni.permissionmanager.view.fragment.ApplicationsFragment;
 import com.federicogovoni.permissionmanager.view.fragment.ContextsFragment;
 import com.federicogovoni.permissionmanager.view.fragment.GetProFragment;
 import com.federicogovoni.permissionmanager.view.fragment.SettingsFragment;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 
 import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ProVersionChecker.IProVersionListener {
 
-    public static final String ROOT_DIALOG = "ROOT_DIALOG";
-    public static final String FIRST_OPEN = "FIRST_OPEN";
-    public static final String[] GOOGLE_CATALOG = new String[]{"ntpsync.donation.1",
-            "ntpsync.donation.2", "ntpsync.donation.3", "ntpsync.donation.5", "ntpsync.donation.8",
-            "ntpsync.donation.13"};
     private boolean mDebug = false;
-    private FusedLocationProviderClient mFusedLocationProviderClient;
+    private AdView mAdView;
 
 
     @Override
@@ -62,9 +59,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Sample AdMob app ID: ca-app-pub-9125265928210219~3176045725
+        mAdView = findViewById(R.id.main_activity_ad_view);
+        AdRequest adRequest = AdRequestKeeper.getAdRequest(this);
+        mAdView.loadAd(adRequest);
+
+
         //controllo se ha la versione pro e nel caso tolgo la visualizzazione della pubblicità
-        IabHelper iabHelper = IabHelperInstance.getInstance(getApplicationContext());
-        ProVersionChecker.getInstance(this, iabHelper).checkPro();
+        ProVersionChecker.checkIfPro(this, this::onProVersionResult);
 
         new BackgroundLoaderTask(this).execute();
 
@@ -113,32 +115,23 @@ public class MainActivity extends AppCompatActivity
             firstFragment = new SettingsFragment();
         } else if (fragment == R.id.nav_support){
             navigationView.setCheckedItem(fragment);
-            firstFragment = GetProFragment.newInstance(mDebug, true, GOOGLE_CATALOG,
-                    new String[] {getResources().getString(R.string.get_pro_purchase_price)});
+            firstFragment = new GetProFragment();
         } else
             firstFragment = new ApplicationsFragment();
 
         lfu.setNewId(fragment);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_applications_main_relative_layout, firstFragment).addToBackStack(null).commit();
 
-        boolean showDialog = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(ROOT_DIALOG, true);
+        boolean showDialog = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(Constants.ROOT_DIALOG, true);
 
         if(!RootUtil.isDeviceRooted() && showDialog) {
-            new MaterialDialog.Builder(this)
-                    .title(R.string.no_root_title)
-                    .content(R.string.no_root_text)
-                    .positiveText(getResources().getString(R.string.ok))
-                    .negativeText(getResources().getString(R.string.dont_show_again))
-                    .itemsCallback(new MaterialDialog.ListCallback() {
-                        @Override
-                        public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        }
-                    })
-                    .onNegative(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean(ROOT_DIALOG, false).apply();
-                        }
+            ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(MainActivity.this, R.style.AppTheme);
+            new MaterialAlertDialogBuilder(contextThemeWrapper)
+                    .setTitle(R.string.no_root_title)
+                    .setMessage(R.string.no_root_text)
+                    .setPositiveButton(getResources().getString(R.string.ok), (dialog, which) -> dialog.dismiss())
+                    .setNegativeButton(getResources().getString(R.string.dont_show_again), (dialog, which) -> {
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean(Constants.ROOT_DIALOG, false).apply();
                     })
                     .show();
         }
@@ -152,21 +145,13 @@ public class MainActivity extends AppCompatActivity
             boolean newPermissionStatus = permission.check() ? permission.revoke() : permission.grant();
             if (currentPermissionStatus == newPermissionStatus) {
                 //mostro messaggio di errore
-                new MaterialDialog.Builder(this)
-                        .title(R.string.not_working_title)
-                        .content(R.string.not_working_text)
-                        .positiveText(getResources().getString(R.string.ok))
-                        .negativeText(getResources().getString(R.string.dont_show_again))
-                        .itemsCallback(new MaterialDialog.ListCallback() {
-                            @Override
-                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                            }
-                        })
-                        .onNegative(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean(FIRST_OPEN, false).apply();
-                            }
+                ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(MainActivity.this, R.style.AppTheme);
+                new MaterialAlertDialogBuilder(contextThemeWrapper)
+                        .setTitle(R.string.not_working_title)
+                        .setMessage(R.string.not_working_text)
+                        .setPositiveButton(getResources().getString(R.string.ok), (dialog, which) -> dialog.dismiss())
+                        .setNegativeButton(getResources().getString(R.string.dont_show_again), (dialog, which) -> {
+                            PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean(FIRST_OPEN, false).apply();
                         })
                         .show();
             } else {
@@ -196,16 +181,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        //int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -238,8 +213,7 @@ public class MainActivity extends AppCompatActivity
             trans.commit();
         } else if (id == R.id.nav_support && lfu.getLastFragmentId() != id) {
             lfu.setNewId(id);
-            Fragment sFragment = GetProFragment.newInstance(mDebug, true, GOOGLE_CATALOG,
-                    new String[] {getResources().getString(R.string.get_pro_purchase_price)});
+            Fragment sFragment = new GetProFragment();
             trans.replace(R.id.fragment_applications_main_relative_layout, sFragment);
             trans.addToBackStack("fragBack");
             trans.commit();
@@ -270,15 +244,11 @@ public class MainActivity extends AppCompatActivity
                         Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
             }
         } else if (id == R.id.nav_changelog) {
-            new MaterialDialog.Builder(this)
-                    .title(getResources().getString(R.string.changelog_content_title))
-                    .items(R.array.changelog_content_value)
-                    .positiveText(getResources().getString(R.string.ok))
-                    .itemsCallback(new MaterialDialog.ListCallback() {
-                        @Override
-                        public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        }
-                    })
+            ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(MainActivity.this, R.style.AppTheme);
+            new MaterialAlertDialogBuilder(contextThemeWrapper)
+                    .setTitle(getResources().getString(R.string.changelog_content_title))
+                    .setItems(R.array.changelog_content_value, null)
+                    .setPositiveButton(getResources().getString(R.string.ok), (dialog, which) -> dialog.dismiss())
                     .show();
         }
 
@@ -298,6 +268,15 @@ public class MainActivity extends AppCompatActivity
         protected Void doInBackground(Void... params) {
             PermissionsLoader.getInstance(activityReference.get().getApplicationContext());
             return null;
+        }
+    }
+
+    @Override
+    public void onProVersionResult(boolean isPro) {
+        if(isPro) {
+            mAdView.setVisibility(View.GONE);
+        } else {
+            mAdView.setVisibility(View.VISIBLE);
         }
     }
 }

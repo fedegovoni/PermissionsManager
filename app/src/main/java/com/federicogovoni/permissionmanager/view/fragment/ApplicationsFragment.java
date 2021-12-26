@@ -21,8 +21,6 @@ import com.federicogovoni.permissionmanager.controller.ProVersionChecker;
 import com.federicogovoni.permissionmanager.utils.AdRequestKeeper;
 import com.federicogovoni.permissionmanager.view.PermissionsActivity;
 import com.federicogovoni.permissionmanager.view.adapter.AppAdapter;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
@@ -39,7 +37,6 @@ public class ApplicationsFragment extends Fragment implements SearchView.OnQuery
     private List<ApplicationInfo> installedApplications;
 
     private SearchView searchView;
-    private AdView mAdView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,22 +49,11 @@ public class ApplicationsFragment extends Fragment implements SearchView.OnQuery
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle(R.string.app_title);
 
-        // Sample AdMob app ID: ca-app-pub-9125265928210219~3176045725
-        mAdView = getActivity().findViewById(R.id.fragment_applications_ad_view);
-        AdRequest adRequest = AdRequestKeeper.getAdRequest(getActivity());
-        mAdView.loadAd(adRequest);
-
         installedApplications = ApplicationsInfoManager.getInstance(getActivity().getApplicationContext()).getInstalledApplications();
 
-        try {
-            if (ProVersionChecker.getInstance().checkPro()) {
-                getActivity().findViewById(R.id.fragment_applications_ad_view).setVisibility(View.GONE);
-
-                getActivity().findViewById(R.id.fragment_applications_applications_list_view).setPadding(0,0,0,0);
-            }
-
-        } catch (NullPointerException e){
-        }
+        ProVersionChecker.checkIfPro(getContext(), isPro -> {
+            getActivity().findViewById(R.id.fragment_applications_applications_list_view).setPadding(0,0,0,0);
+        });
 
         fillListView(installedApplications);
     }

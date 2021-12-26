@@ -43,13 +43,14 @@ public class PermissionsActivity extends AppCompatActivity {
         AdRequest adRequest = AdRequestKeeper.getAdRequest(this);
         mAdView.loadAd(adRequest);
 
-        try {
-            if (ProVersionChecker.getInstance().checkPro()) {
+
+        ProVersionChecker.checkIfPro(this, isPro -> {
+            if(isPro) {
                 findViewById(R.id.activity_permissions_ad_view).setVisibility(View.GONE);
-                findViewById(R.id.activity_permissions_list_view).setPadding(0,0,0,0);
+                findViewById(R.id.activity_permissions_list_view).setPadding(0, 0, 0, 0);
             }
-        } catch (NullPointerException e) {
-        }
+        });
+
 
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
