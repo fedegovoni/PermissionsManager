@@ -43,6 +43,7 @@
     <string name="no_root_text">Seems that this device can\'t gain root privileges. You won\'t be able to manage applications permissions. If you\'d like to unlock this function, please root your device.</string>
 
     <string name="snackbar_no_priviliges">Sorry, it\'s not possible to modify permission :(</string>
+    <string name="snackbar_error_get_address">Sorry, it\'s not possible to fetch the address :(</string>
 
     <string name="not_working_title">Ops! Compatibility issues:</string>
     <string name="not_working_text">Seems that this device doesn\'t support permissions changing via ADB, this means that Permission\'s Manager couldn\'t work properly. :(</string>
@@ -50,6 +51,9 @@
     <string name="new_context">New context</string>
 
     <string name="fill_each_field">Fill each requested field!</string>
+    <string name="fill_each_field_address_missing">Fill each requested field! Address is missing.</string>
+    <string name="fill_each_field_location_missing">Fill each requested field! Location is missing.</string>
+    <string name="fill_each_field_date_time_missing">Fill each requested field! Some date date or time is missing.</string>
     <string name="invalid_radius">Invalid radius, radius setted to default value </string>
     <string name="denied_position">Permission denied, impossible to read Position</string>
 
@@ -131,7 +135,7 @@
 
     <string name="get_pro_error_dialog">Error occurred</string>
     <string name="get_pro_button_close">Close</string>
-    <string name="get_pro_description">Do you find this application useful?\nPurchase the PRO version and remove the annoying advices!</string>
+    <string name="get_pro_description">Do you find this application useful?\nPurchase the PRO version and remove the annoying advices for only %PRICE%!</string>
     <string name="get_pro_button_text">GET PRO!</string>
     <string name="get_pro_market_not_supported">In-App Donations are not supported. Is Google Play Store installed correctly?</string>
     <string name="get_pro_not_supported_title">In-App Donations are not supported.</string>
@@ -154,8 +158,12 @@
     <string name="invalid_password" translatable="false">Password must be >5 characters</string>
     <string name="login_failed" translatable="false">"Login failed"</string>
 
-    <string name="admob_key" translatable="false">ca-app-pub-9125265928210219~3176045725</string>
-    <string name="admob_debug_key" translatable="false">ca-app-pub-9125265928210219~3176045725</string>
+    <string name="search">Search</string>
 
+    <string name="title_activity_maps">Current Place Details</string>
+    <string name="default_info_title">Default Location</string>
+    <string name="default_info_snippet">No places found, because location permission is disabled.</string>
+    <string name="option_get_place">Get place</string>
+    <string name="pick_place">Choose a place</string>
 
 </resources>

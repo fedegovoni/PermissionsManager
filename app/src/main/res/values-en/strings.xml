@@ -113,7 +113,7 @@
 
     <string name="get_pro_error_dialog">Error occurred</string>
     <string name="get_pro_button_close">Close</string>
-    <string name="get_pro_description">Do you find this application useful?\nPurchase the PRO version and remove the annoying advices!</string>
+    <string name="get_pro_description">Do you find this application useful?\nPurchase the PRO version and remove the annoying advices for only %PRICE%!</string>
     <string name="get_pro_button_text">GET PRO!</string>
     <string name="get_pro_market_not_supported">In-App Donations are not supported. Is Google Play Store installed correctly?</string>
     <string name="get_pro_not_supported_title">In-App Donations are not supported.</string>
@@ -129,6 +129,7 @@
     <string name="get_pro_purchase_price" translatable="false">1,29 $</string>
     <string name="fragment_settings_pro_title">Pro only</string>
     <string name="frequency">Frequency</string>
+    <string name="search">Search</string>
 
 
 </resources>

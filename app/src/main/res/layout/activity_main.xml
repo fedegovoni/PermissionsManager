@@ -28,12 +28,5 @@
             android:theme="@style/AppTheme.NoActionBar" />
     </androidx.drawerlayout.widget.DrawerLayout>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/main_activity_ad_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-9125265928210219/6676307037"/>
+    <include layout="@layout/ad_view_component" />
 </RelativeLayout>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_applications_main_relative_layout"
     android:background="#ffffff"
     android:layout_width="match_parent"
@@ -9,30 +8,30 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_contexts_main_list_view"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:headerDividersEnabled="true"
-            android:divider="@color/colorAccent"
-            android:dividerHeight="0px"
-            android:background="#EEEEEE"
-            android:paddingBottom="164dp"
-            android:paddingTop="4dp"
-            android:clipToPadding="false"/>
+    <ListView
+        android:id="@+id/fragment_contexts_main_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#EEEEEE"
+        android:clipToPadding="false"
+        android:divider="@color/colorAccent"
+        android:dividerHeight="0px"
+        android:headerDividersEnabled="true"
+        android:paddingTop="4dp"
+        android:paddingBottom="164dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fragment_contexts_add_context_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="100dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/plus"
-            android:foregroundGravity="center"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragment_contexts_add_context_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
+        android:foregroundGravity="center"
+        android:src="@drawable/plus" />
 
     <RelativeLayout
         android:id="@+id/fragment_contexts_empty_relative_layout"

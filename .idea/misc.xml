@@ -3,16 +3,46 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_choose_permissions_new_context.xml" value="0.9715909090909091" />
+        <entry key="../../.gradle/caches/transforms-3/d25df937ba1711c99d20c4ad4220c3e3/transformed/jetified-places-2.5.0/res/layout/places_autocomplete_activity.xml" value="0.11413043478260869" />
+        <entry key="app/src/main/res/drawable/gps.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/drawable/gps_place_picker.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/rate.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/drawable/sensors.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/drawable/settings.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/drawable/share.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/drawable/sms.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/drawable/storage.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/drawable/tick.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/layout/activity_choose_permissions_new_context.xml" value="0.24045801526717558" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/activity_main_app_bar_main.xml" value="0.16875" />
+        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.13043478260869565" />
+        <entry key="app/src/main/res/layout/activity_new_context.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/activity_permissions.xml" value="0.13043478260869565" />
+        <entry key="app/src/main/res/layout/activity_place_picker.xml" value="0.1171875" />
+        <entry key="app/src/main/res/layout/ad_view_component.xml" value="0.11413043478260869" />
+        <entry key="app/src/main/res/layout/adapter_expandable_list_header.xml" value="0.13043478260869565" />
+        <entry key="app/src/main/res/layout/adapter_expandable_list_item.xml" value="0.13043478260869565" />
+        <entry key="app/src/main/res/layout/adapter_row_custom_application.xml" value="0.13043478260869565" />
+        <entry key="app/src/main/res/layout/adapter_row_custom_permission.xml" value="0.17074275362318841" />
+        <entry key="app/src/main/res/layout/adapter_row_custom_permission_header.xml" value="0.13043478260869565" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.13043478260869565" />
+        <entry key="app/src/main/res/layout/context_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/custom_info_contents.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_context_long_press.xml" value="0.13043478260869565" />
         <entry key="app/src/main/res/layout/donations__fragment_google.xml" value="0.15489130434782608" />
         <entry key="app/src/main/res/layout/fragment_applications.xml" value="0.15489130434782608" />
         <entry key="app/src/main/res/layout/fragment_contexts.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/fragment_get_pro.xml" value="0.28514582550440576" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/fragment_place_picker.xml" value="0.13043478260869565" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.16875" />
+        <entry key="app/src/main/res/layout/place_picker_fragment.xml" value="0.17074275362318841" />
+        <entry key="app/src/main/res/menu/activity_drawer.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/menu/current_place_menu.xml" value="0.18125" />
+        <entry key="app/src/main/res/menu/search_menu.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/adapter_row_custom_application_application_icon_image_view.xml" value="0.18489583333333334" />
       </map>
     </option>
   </component>

@@ -112,7 +112,7 @@
                 android:textSize="15sp"
                 android:textColor="@color/black"/>
 
-            <Switch
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/fragment_settings_receive_notifications_switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

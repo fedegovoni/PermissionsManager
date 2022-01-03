@@ -33,7 +33,7 @@
         android:paddingEnd="0dp"
         android:clickable="false" />
 
-    <Switch
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/adapter_row_custom_permission_grant_or_revoke_switch"
         android:layout_width="0dp"
         android:layout_height="match_parent"

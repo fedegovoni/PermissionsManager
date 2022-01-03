@@ -110,7 +110,7 @@
     </string-array>
 
     <string name="get_pro_button_close">Chiudi</string>
-    <string name="get_pro_description">Trovi che questa applicazione sia utile?\Passa a pro e rimuovi la pubblicità</string>
+    <string name="get_pro_description">Trovi che questa applicazione sia utile?\Passa a pro e rimuovi la pubblicità a solo %PRICE%!</string>
     <string name="get_pro_not_supported_title">I pagamenti in-app non sono supportati.</string>
     <string name="get_pro_market_not_supported">Pagamenti In-App non supportati. Google Play Store è installato correttamente?</string>
     <string name="get_pro_button_text">PASSA A PRO</string>
@@ -127,5 +127,6 @@
     <string name="get_pro_purchase_price">1,29 €</string>
     <string name="fragment_settings_pro_title">PRO</string>
     <string name="frequency">Frequenza</string>
+    <string name="search">Cerca</string>
 
 </resources>

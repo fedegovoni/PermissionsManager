@@ -1,17 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@style/AppTheme" >
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/activity_permissions_progress_bar"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:indeterminate="true"
-        android:layout_centerInParent="true"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true" />
 
     <ListView
         android:id="@+id/activity_permissions_list_view"
@@ -24,7 +21,7 @@
         android:dividerHeight="1px"
         android:background="@color/common_google_signin_btn_text_dark_default"
         android:visibility="gone"
-        android:paddingBottom="100dp"
+        android:paddingBottom="88dp"
         android:clipToPadding="false">
     </ListView>
 
@@ -55,14 +52,6 @@
             android:text="@string/no_permission"/>
         </RelativeLayout>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/activity_permissions_ad_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-9125265928210219/6676307037">
-    </com.google.android.gms.ads.AdView>
+    <include layout="@layout/ad_view_component" />
 
 </RelativeLayout>

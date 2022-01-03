@@ -1,347 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_context_root_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/grey_background"
-    tools:context=".view.NewContextActivity">
+    android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/activity_new_context_scroll_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/grey_background"
-        android:gravity="center_horizontal"
-        android:descendantFocusability="beforeDescendants"
-        android:focusableInTouchMode="true"
-        android:layout_marginBottom="50dp" >
+        tools:context="com.federicogovoni.permissionsmanager.view.main.contexts.newcontext.NewContextActivity">
 
-        <RelativeLayout
+        <ScrollView
+            android:id="@+id/activity_new_context_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:background="@color/grey_background"
+            android:gravity="center_horizontal"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:layout_marginBottom="80dp" >
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_name_text_input_layout"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/activity_new_context_name_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="14"
-                    android:hint="@string/context_name"
-                    android:inputType="text|textCapSentences"
-                    android:maxLength="20"
-                    android:textSize="18sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_frequency_text_input_layout"
-                android:layout_width="match_parent"
-                android:hint="Type"
-                android:layout_below="@id/activity_new_context_name_text_input_layout"
-                android:textColorHint="#000000"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/activation_frequency"
-                    android:textSize="12sp"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="0dp"/>
-
-                <Spinner
-                    android:id="@+id/activity_new_context_frequency_spinner"
-                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:ems="14"
-                    android:entries="@array/application_frequency"
-                    android:inputType="text|textCapSentences"
-                    android:maxLength="20"
-                    android:textColorHint="#000000"
-                    android:textSize="18sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_week_bar_text_input_layout"
-                android:layout_width="match_parent"
-                android:hint="@string/type"
-                android:layout_below="@id/activity_new_context_frequency_text_input_layout"
-                android:textColorHint="#000000"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/days"
-                    android:textSize="12sp"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="0dp"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <CheckedTextView
-                        android:id="@+id/activity_new_context_monday_checked_text_view"
-                        android:layout_width="41dp"
-                        android:layout_height="41dp"
-                        android:gravity="center"
-                        android:textAlignment="gravity"
-                        android:text="@string/monday"
-                        android:paddingTop="9dp"
-                        android:paddingBottom="9dp"
-                        android:textSize="18sp"
-                        android:layout_margin="2dp"
-                        android:layout_marginTop="4dp"/>
-
-                    <CheckedTextView
-                        android:id="@+id/activity_new_context_tuesday_checked_text_view"
-                        android:layout_width="41dp"
-                        android:layout_height="41dp"
-                        android:gravity="center"
-                        android:layout_toEndOf="@id/activity_new_context_monday_checked_text_view"
-                        android:textAlignment="gravity"
-                        android:text="@string/tuesday"
-                        android:paddingTop="9dp"
-                        android:paddingBottom="9dp"
-                        android:textSize="18sp"
-                        android:layout_margin="2dp"
-                        android:layout_marginTop="4dp"/>
-                    <CheckedTextView
-                        android:id="@+id/activity_new_context_wednesday_checked_text_view"
-                        android:layout_width="41dp"
-                        android:layout_height="41dp"
-                        android:gravity="center"
-                        android:layout_toEndOf="@id/activity_new_context_tuesday_checked_text_view"
-                        android:textAlignment="gravity"
-                        android:text="@string/wednesday"
-                        android:paddingTop="9dp"
-                        android:paddingBottom="9dp"
-                        android:textSize="18sp"
-                        android:layout_margin="2dp"
-                        android:layout_marginTop="4dp"/>
-
-                    <CheckedTextView
-                        android:id="@+id/activity_new_context_thursday_checked_text_view"
-                        android:layout_width="41dp"
-                        android:layout_height="41dp"
-                        android:gravity="center"
-                        android:layout_toEndOf="@id/activity_new_context_wednesday_checked_text_view"
-                        android:textAlignment="gravity"
-                        android:text="@string/thursday"
-                        android:paddingTop="9dp"
-                        android:paddingBottom="9dp"
-                        android:textSize="18sp"
-                        android:layout_margin="2dp"
-                        android:layout_marginTop="4dp"/>
-
-                    <CheckedTextView
-                        android:id="@+id/activity_new_context_friday_checked_text_view"
-                        android:layout_width="41dp"
-                        android:layout_height="41dp"
-                        android:gravity="center"
-                        android:layout_toEndOf="@id/activity_new_context_thursday_checked_text_view"
-                        android:textAlignment="gravity"
-                        android:text="@string/friday"
-                        android:paddingTop="9dp"
-                        android:paddingBottom="9dp"
-                        android:textSize="18sp"
-                        android:layout_margin="2dp"
-                        android:layout_marginTop="4dp"/>
-
-                    <CheckedTextView
-                        android:id="@+id/activity_new_context_saturday_checked_text_view"
-                        android:layout_width="41dp"
-                        android:layout_height="41dp"
-                        android:gravity="center"
-                        android:layout_toEndOf="@id/activity_new_context_friday_checked_text_view"
-                        android:textAlignment="gravity"
-                        android:text="@string/saturday"
-                        android:paddingTop="9dp"
-                        android:paddingBottom="9dp"
-                        android:textSize="18sp"
-                        android:layout_margin="2dp"
-                        android:layout_marginTop="4dp"/>
-
-                    <CheckedTextView
-                        android:id="@+id/activity_new_context_sunday_checked_text_view"
-                        android:layout_width="41dp"
-                        android:layout_height="41dp"
-                        android:gravity="center"
-                        android:layout_toEndOf="@id/activity_new_context_saturday_checked_text_view"
-                        android:textAlignment="gravity"
-                        android:text="@string/sunday"
-                        android:paddingTop="9dp"
-                        android:paddingBottom="9dp"
-                        android:textSize="18sp"
-                        android:layout_margin="2dp"
-                        android:layout_marginTop="4dp"/>
-
-                </RelativeLayout>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_activation_date_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_below="@id/activity_new_context_week_bar_text_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/activity_new_context_activation_date_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="14"
-                    android:hint="@string/activation_date"
-                    android:inputType="text|textCapSentences"
-                    android:maxLength="20"
-                    android:textSize="18sp"
-                    android:focusable="false"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_activation_time_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_below="@id/activity_new_context_activation_date_text_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/activity_new_context_activation_time_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="14"
-                    android:hint="@string/activation_time"
-                    android:inputType="text|textCapSentences"
-                    android:maxLength="20"
-                    android:textSize="18sp"
-                    android:focusable="false"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_attention_label_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_below="@id/activity_new_context_activation_time_text_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/activity_new_context_attention_label_text_view"
-                    android:paddingTop="10dp"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="0dp"
-                    android:paddingBottom="13dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:text="@string/deactivation_before_activation_error"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_deactivation_date_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_below="@id/activity_new_context_attention_label_text_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/activity_new_context_deactivation_date_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="14"
-                    android:hint="@string/deactivation_date"
-                    android:inputType="text|textCapSentences"
-                    android:maxLength="20"
-                    android:textSize="18sp"
-                    android:focusable="false"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_deactivation_time_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_below="@id/activity_new_context_deactivation_date_text_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/activity_new_context_deactivation_time_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="14"
-                    android:hint="@string/deactivation_time"
-                    android:inputType="text|textCapSentences"
-                    android:maxLength="20"
-                    android:textSize="18sp"
-                    android:focusable="false"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_address_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_below="@id/activity_new_context_deactivation_time_text_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/activity_new_context_address_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/address"
-                    android:textSize="18sp"
-                    android:focusable="false"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_new_context_radius_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_below="@id/activity_new_context_address_text_input_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/activity_new_context_radius_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textSize="18sp"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/activity_new_context_next_button"
-                android:layout_width="112dp"
                 android:layout_height="wrap_content"
-                android:text="@string/next"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_below="@+id/activity_new_context_radius_text_input_layout"
-                android:textColor="#ffffff"
-                android:layout_alignParentEnd="true" />
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_name_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/activity_new_context_name_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="14"
+                        android:hint="@string/context_name"
+                        android:inputType="text|textCapSentences"
+                        android:maxLength="20"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        </RelativeLayout>
-    </ScrollView>
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/activity_new_context_ad_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-9125265928210219/6676307037">
-    </com.google.android.gms.ads.AdView>
-</RelativeLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_frequency_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:hint="Type"
+                    android:layout_below="@id/activity_new_context_name_text_input_layout"
+                    android:textColorHint="#000000"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/activation_frequency"
+                        android:textSize="12sp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="0dp"/>
+
+                    <Spinner
+                        android:id="@+id/activity_new_context_frequency_spinner"
+                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:ems="14"
+                        android:entries="@array/application_frequency"
+                        android:inputType="text|textCapSentences"
+                        android:maxLength="20"
+                        android:textColorHint="#000000"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_week_bar_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:hint="@string/type"
+                    android:layout_below="@id/activity_new_context_frequency_text_input_layout"
+                    android:textColorHint="#000000"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/days"
+                        android:textSize="12sp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="0dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <CheckedTextView
+                            android:id="@+id/activity_new_context_monday_checked_text_view"
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:gravity="center"
+                            android:textAlignment="gravity"
+                            android:text="@string/monday"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:textSize="18sp"
+                            android:layout_margin="2dp"
+                            android:layout_marginTop="4dp"/>
+
+                        <CheckedTextView
+                            android:id="@+id/activity_new_context_tuesday_checked_text_view"
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:gravity="center"
+                            android:layout_toEndOf="@id/activity_new_context_monday_checked_text_view"
+                            android:textAlignment="gravity"
+                            android:text="@string/tuesday"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:textSize="18sp"
+                            android:layout_margin="2dp"
+                            android:layout_marginTop="4dp"/>
+                        <CheckedTextView
+                            android:id="@+id/activity_new_context_wednesday_checked_text_view"
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:gravity="center"
+                            android:layout_toEndOf="@id/activity_new_context_tuesday_checked_text_view"
+                            android:textAlignment="gravity"
+                            android:text="@string/wednesday"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:textSize="18sp"
+                            android:layout_margin="2dp"
+                            android:layout_marginTop="4dp"/>
+
+                        <CheckedTextView
+                            android:id="@+id/activity_new_context_thursday_checked_text_view"
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:gravity="center"
+                            android:layout_toEndOf="@id/activity_new_context_wednesday_checked_text_view"
+                            android:textAlignment="gravity"
+                            android:text="@string/thursday"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:textSize="18sp"
+                            android:layout_margin="2dp"
+                            android:layout_marginTop="4dp"/>
+
+                        <CheckedTextView
+                            android:id="@+id/activity_new_context_friday_checked_text_view"
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:gravity="center"
+                            android:layout_toEndOf="@id/activity_new_context_thursday_checked_text_view"
+                            android:textAlignment="gravity"
+                            android:text="@string/friday"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:textSize="18sp"
+                            android:layout_margin="2dp"
+                            android:layout_marginTop="4dp"/>
+
+                        <CheckedTextView
+                            android:id="@+id/activity_new_context_saturday_checked_text_view"
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:gravity="center"
+                            android:layout_toEndOf="@id/activity_new_context_friday_checked_text_view"
+                            android:textAlignment="gravity"
+                            android:text="@string/saturday"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:textSize="18sp"
+                            android:layout_margin="2dp"
+                            android:layout_marginTop="4dp"/>
+
+                        <CheckedTextView
+                            android:id="@+id/activity_new_context_sunday_checked_text_view"
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:gravity="center"
+                            android:layout_toEndOf="@id/activity_new_context_saturday_checked_text_view"
+                            android:textAlignment="gravity"
+                            android:text="@string/sunday"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:textSize="18sp"
+                            android:layout_margin="2dp"
+                            android:layout_marginTop="4dp"/>
+
+                    </RelativeLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_activation_date_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/activity_new_context_week_bar_text_input_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/activity_new_context_activation_date_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="14"
+                        android:hint="@string/activation_date"
+                        android:inputType="text|textCapSentences"
+                        android:maxLength="20"
+                        android:textSize="18sp"
+                        android:focusable="false"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_activation_time_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/activity_new_context_activation_date_text_input_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/activity_new_context_activation_time_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="14"
+                        android:hint="@string/activation_time"
+                        android:inputType="text|textCapSentences"
+                        android:maxLength="20"
+                        android:textSize="18sp"
+                        android:focusable="false"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_attention_label_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/activity_new_context_activation_time_text_input_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/activity_new_context_attention_label_text_view"
+                        android:paddingTop="10dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="0dp"
+                        android:paddingBottom="13dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:text="@string/deactivation_before_activation_error"
+                        android:textSize="15sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_deactivation_date_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/activity_new_context_attention_label_text_input_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/activity_new_context_deactivation_date_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="14"
+                        android:hint="@string/deactivation_date"
+                        android:inputType="text|textCapSentences"
+                        android:maxLength="20"
+                        android:textSize="18sp"
+                        android:focusable="false"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_deactivation_time_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/activity_new_context_deactivation_date_text_input_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/activity_new_context_deactivation_time_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="14"
+                        android:hint="@string/deactivation_time"
+                        android:inputType="text|textCapSentences"
+                        android:maxLength="20"
+                        android:textSize="18sp"
+                        android:focusable="false"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_address_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/activity_new_context_deactivation_time_text_input_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/activity_new_context_address_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/address"
+                        android:textSize="18sp"
+                        android:focusable="false"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/activity_new_context_radius_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/activity_new_context_address_text_input_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/activity_new_context_radius_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="18sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/activity_new_context_next_button"
+                    android:layout_width="112dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/next"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_below="@+id/activity_new_context_radius_text_input_layout"
+                    android:textColor="#ffffff"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+        </ScrollView>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/activity_main_place_picker_container_fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <include layout="@layout/ad_view_component" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -96,7 +96,7 @@
 
                 </LinearLayout>
 
-                <Switch
+                <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/context_layout_enable_switch"
                     android:layout_width="wrap_content"
                     android:layout_alignParentEnd="true"

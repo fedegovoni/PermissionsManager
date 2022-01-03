@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:isScrollContainer="true"
-    android:orientation="vertical"
-    android:padding="15dp"
-    android:scrollbars="vertical" >
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:isScrollContainer="true"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/fragment_get_pro_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
         <TextView
             android:id="@+id/fragment_get_pro_description_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
+            android:padding="15dp"
             android:text="@string/get_pro_description"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingTop="8dp" >
-
-            <TextView
-                android:id="@+id/fragment_get_pro_price_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/get_pro_purchase_price"
-                android:textAlignment="textStart"
-                android:layout_gravity="center_vertical"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/donations__fragment_google_get_pro_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/get_pro_button_text"
-                android:textColor="@color/white" />
-        </LinearLayout>
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragment_get_pro_purchase_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="96dp"
+        android:backgroundTint="@color/colorAccent"
+        android:src="@drawable/ic_dollar_white_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:enabled="false"/>
 
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragment_get_pro_consume_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/fragment_get_pro_purchase_fab"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_undo_white_24"
+        android:visibility="gone"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
