@@ -1,56 +1,44 @@
-/*
- * Copyright (C) 2011-2015 Dominik Schürmann <dominik@dominikschuermann.de>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.federicogovoni.permissionsmanager.view.main;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.viewbinding.BuildConfig;
 
-import com.federicogovoni.permissionmanager.BuildConfig;
 import com.federicogovoni.permissionmanager.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.federicogovoni.permissionsmanager.controller.ProVersionChecker;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import timber.log.Timber;
 
+@SuppressWarnings("deprecation")
+@SuppressLint("NonConstantResourceId")
 public class GetProFragment extends Fragment {
 
     @BindView(R.id.fragment_get_pro_description_text_view)
     TextView descriptionTextView;
 
     @BindView(R.id.fragment_get_pro_consume_fab)
-    FloatingActionButton consumeFab;
+    AppCompatButton consumeFab;
 
     @BindView(R.id.fragment_get_pro_progress_bar)
     LinearProgressIndicator progressBar;
 
     @BindView(R.id.fragment_get_pro_purchase_fab)
-    FloatingActionButton purchaseFab;
+    AppCompatButton purchaseFab;
 
 
     @Override
@@ -62,16 +50,14 @@ public class GetProFragment extends Fragment {
             consumeFab.setVisibility(View.VISIBLE);
         }
 
+        assert getActivity() != null;
         ProVersionChecker.checkIfPro(getActivity(), isPro -> {
             Timber.d("IProVersionListener invoked for %s", getClass().toString());
             progressBar.setVisibility(View.GONE);
             if(isPro) {
                 descriptionTextView.setText(getResources().getString(R.string.get_pro_already_pro));
-                if(!BuildConfig.DEBUG) {
+                if(!BuildConfig.BUILD_TYPE.equals("release")) {
                     purchaseFab.setVisibility(View.GONE);
-                    ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-                    params.setMargins(0,0,8, 8);
-                    purchaseFab.setLayoutParams(params);
                     purchaseFab.setEnabled(false);
                 } else {
                     purchaseFab.setEnabled(true);
@@ -84,7 +70,6 @@ public class GetProFragment extends Fragment {
                     descriptionTextView.setText(adaptedProDescription);
                 }
                 purchaseFab.setEnabled(true);
-                purchaseFab.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             }
         });
 
@@ -92,13 +77,26 @@ public class GetProFragment extends Fragment {
     }
 
     @OnClick(R.id.fragment_get_pro_purchase_fab)
-    public void purchaseProVersion() {
-        ProVersionChecker.getInstance(getContext()).startPurchaseFlow(getActivity());
+    public void purchaseProVersion() throws NullPointerException {
+        assert getContext() != null;
+        assert ProVersionChecker.getInstance(getContext()) != null;
+        try {
+            Objects.requireNonNull(ProVersionChecker.getInstance(getContext())).startPurchaseFlow(getActivity());
+        } catch (NullPointerException e) {
+            Timber.e("NullPointerException on purchaseProVersion() method");
+            e.printStackTrace();
+        }
     }
 
     @OnClick(R.id.fragment_get_pro_consume_fab)
-    public void consumePurchases(View view) {
-        Timber.d("Reset Pruchases pressed");
-        ProVersionChecker.getInstance(getContext()).resetPurchases();
+    public void consumePurchases (@SuppressWarnings("unused") View view) throws NullPointerException {
+        Timber.d("Revert purchases pressed");
+        assert getContext() != null;
+        try {
+            Objects.requireNonNull(ProVersionChecker.getInstance(getContext())).resetPurchases();
+        } catch (NullPointerException e) {
+            Timber.e("NullPointerException on consumePurchases() method");
+            e.printStackTrace();
+        }
     }
 }

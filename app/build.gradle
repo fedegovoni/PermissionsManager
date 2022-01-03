@@ -8,7 +8,21 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdk 30
+    signingConfigs {
+        release {
+        storeFile file('/Users/fgovoni/Downloads/permissionsmanager_key.pepk')
+            storePassword 'Federico94'
+            keyAlias 'key0'
+            keyPassword 'Federico94'
+        }
+        store - release {
+            storeFile file('/Users/fgovoni/Downloads/permissionsmanager_key.pepk')
+            storePassword 'Federico94'
+            keyAlias 'key0'
+            keyPassword 'Federico94'
+        }
+    }
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.federicogovoni.permissionsmanager"
@@ -27,6 +41,9 @@ android {
         buildConfigField 'Boolean', 'DEBUG', 'false'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
+        minSdkVersion 26
+        targetSdkVersion 31
     }
 
     buildTypes {
@@ -70,8 +87,11 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$android_lib_versions"
     implementation "com.android.support:design:$android_lib_versions"
     implementation "com.android.support:support-v4:$android_lib_versions"
-    implementation "com.android.support:cardview-v7:$android_lib_versions"
     implementation "com.android.support:support-compat:$android_lib_versions"
+
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
 
     //firebase
     implementation "com.google.firebase:firebase-appindexing:20.0.0"

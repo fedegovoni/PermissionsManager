@@ -62,17 +62,9 @@ public class MainActivity extends BaseActivity
     @BindView(R.id.activity_main_nav_view)
     NavigationView navigationView;
 
-    //@BindView(R.id.ad_view)
-    //AdView mAdView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        //ButterKnife.bind(this);
-
-        //AdRequest adRequest = AdRequestKeeper.getAdRequest(this);
-        //mAdView.loadAd(adRequest);
 
         setSupportActionBar(toolbar);
 

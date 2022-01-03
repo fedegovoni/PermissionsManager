@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/grey_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="0dp"
         android:isScrollContainer="true"
         android:orientation="vertical"
         android:scrollbars="vertical"
@@ -17,36 +19,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
-        <TextView
-            android:id="@+id/fragment_get_pro_description_text_view"
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="@string/get_pro_description"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_margin="12dp"
+            app:cardCornerRadius="10dp"
+            android:background="@color/black"
+            android:elevation="3dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/fragment_get_pro_description_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="@string/get_pro_description"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:theme="@style/MaterialAppTheme"
+                    android:id="@+id/fragment_get_pro_purchase_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:enabled="false"
+                    android:text="@string/get_pro"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_get_pro_description_text_view" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/fragment_get_pro_consume_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="REVERT PURHCASES"
+                    android:textColor="@color/white"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@id/fragment_get_pro_purchase_fab"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_get_pro_description_text_view" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fragment_get_pro_purchase_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="96dp"
-        android:backgroundTint="@color/colorAccent"
-        android:src="@drawable/ic_dollar_white_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:enabled="false"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fragment_get_pro_consume_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/fragment_get_pro_purchase_fab"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="8dp"
-        android:src="@drawable/ic_undo_white_24"
-        android:visibility="gone"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

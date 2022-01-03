@@ -124,9 +124,19 @@
 
     <string name="not_working_title">Ops! Problema di compatibilità:</string>
     <string name="not_working_text">Sembra che il tuo dispositivo non supporti il cambio di permessi via ADB, a causa di ciò l\'app potrebbe non riuscire a svolgere il suo compito. :(</string>
-    <string name="get_pro_purchase_price">1,29 €</string>
     <string name="fragment_settings_pro_title">PRO</string>
     <string name="frequency">Frequenza</string>
     <string name="search">Cerca</string>
+    <string name="fill_each_field_address_missing">Completa ogni campo richiesto! Indirizzo mancante.</string>
+    <string name="fill_each_field_location_missing">Completa ogni campo richiesto, posizione mancante.</string>
+    <string name="fill_each_field_date_time_missing">Completa ogni campo richiesto</string>
+    <string name="snackbar_error_get_address">Scusa, non è stato possibile reperire l\'indirizzo dalla posizione da te indicata :(</string>
+    <string name="pick_place">Selezione una posizione</string>
+    <string name="title_activity_maps">Dettagli Posizione</string>
+    <string name="default_info_title">Posizione di default</string>
+    <string name="default_info_snippet">Non è stato trovato nessun posto perché il permesso di accesso alla posizione è disabilitato.</string>
+    <string name="option_get_place">Seleziona una posizione</string>
+
+    <string name="get_pro">PASSA A PRO</string>
 
 </resources>

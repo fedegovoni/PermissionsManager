@@ -163,6 +163,7 @@ public class ChoosePermissionsNewContextActivity extends BaseActivity implements
     @Override
     public void onProVersionResult(boolean isPro) {
         Timber.d("IProVersionListener invoked for %s", getClass().toString());
+        super.onProVersionResult(isPro);
         if(isPro) {
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) newContextFab.getLayoutParams();
             layoutParams.setMargins(0, 0, layoutParams.getMarginEnd(), layoutParams.getMarginEnd());

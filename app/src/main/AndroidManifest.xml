@@ -46,12 +46,12 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.federicogovoni.permissionmanager.com.federicogovoni.permissionsmanager.view.main.MainActivity" />
+                android:value="com.federicogovoni.permissionsmanager.view.main.MainActivity" />
         </activity>
         <activity android:name="com.federicogovoni.permissionsmanager.view.main.contexts.newcontext.NewContextActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.federicogovoni.permissionmanager.com.federicogovoni.permissionsmanager.view.main.MainActivity" />
+                android:value="com.federicogovoni.permissionsmanager.view.main.MainActivity" />
         </activity>
         <activity
             android:name="com.federicogovoni.permissionsmanager.view.main.contexts.newcontext.MapsActivityCurrentPlace"

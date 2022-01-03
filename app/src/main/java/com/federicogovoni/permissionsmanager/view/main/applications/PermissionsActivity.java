@@ -104,6 +104,7 @@ public class PermissionsActivity extends BaseActivity {
     @Override
     public void onProVersionResult(boolean isPro) {
         Timber.d("IProVersionListener invoked for %s", getClass().toString());
+        super.onProVersionResult(isPro);
         if(isPro) {
             activityPermissionsListView.setPadding(0, 0, 0, 0);
         }

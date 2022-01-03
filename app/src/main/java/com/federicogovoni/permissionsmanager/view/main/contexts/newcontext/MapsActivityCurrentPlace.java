@@ -282,9 +282,4 @@ public class MapsActivityCurrentPlace extends BaseActivity
         return R.layout.activity_place_picker;
     }
 
-    @Override
-    public void onProVersionResult(boolean isPro) {
-        return;
-    }
-
 }
