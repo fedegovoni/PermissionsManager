@@ -56,12 +56,12 @@ public class GetProFragment extends Fragment {
             progressBar.setVisibility(View.GONE);
             if(isPro) {
                 descriptionTextView.setText(getResources().getString(R.string.get_pro_already_pro));
-                if(!BuildConfig.BUILD_TYPE.equals("release")) {
-                    purchaseFab.setVisibility(View.GONE);
-                    purchaseFab.setEnabled(false);
-                } else {
-                    purchaseFab.setEnabled(true);
-                }
+                //if(!BuildConfig.DEBUG) {
+                purchaseFab.setVisibility(View.GONE);
+                purchaseFab.setEnabled(false);
+                //} else {
+                //   purchaseFab.setEnabled(true);
+                //}
             } else {
                 String adaptedProDescription = getResources().getString(R.string.get_pro_description);
                 String price = ProVersionChecker.getProVersionPrice();

@@ -63,7 +63,7 @@
                     android:backgroundTint="@color/colorAccent"
                     android:text="REVERT PURHCASES"
                     android:textColor="@color/white"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@id/fragment_get_pro_purchase_fab"
                     app:layout_constraintTop_toBottomOf="@id/fragment_get_pro_description_text_view" />
 
