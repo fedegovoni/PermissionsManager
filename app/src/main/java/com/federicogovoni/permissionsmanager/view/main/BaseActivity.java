@@ -7,29 +7,30 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.federicogovoni.permissionmanager.R;
+import com.federicogovoni.permissionmanager.databinding.ActivityMainBinding;
 import com.federicogovoni.permissionsmanager.controller.ProVersionChecker;
 import com.federicogovoni.permissionsmanager.utils.AdRequestKeeper;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity implements ProVersionChecker.IProVersionListener {
 
-    @BindView(R.id.ad_view)
     AdView mAdView;
-
     protected FirebaseAnalytics firebaseAnalytics;
+
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(getLayoutResourceId());
-        ButterKnife.bind(this);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
+        mAdView = findViewById(R.id.ad_view);
         AdRequest adRequest = AdRequestKeeper.getAdRequest(this);
         mAdView.loadAd(adRequest);
 

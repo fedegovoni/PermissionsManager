@@ -58,12 +58,12 @@ public class Alarm extends BroadcastReceiver {
     }
 
     public void setAlarm(Context context, TimeContext timeContext, Date applyDate, String action) {
-        AlarmManager am =(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        AlarmManager am =(AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, Alarm.class);
         i.putExtra(POLICY_HASH, timeContext.getCurrentContextId());
         i.putExtra(ACTION, action);
         int id = timeContext.getCurrentContextId();
-        PendingIntent pi = PendingIntent.getBroadcast(context, id, i, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pi = PendingIntent.getBroadcast(context, id, i, PendingIntent.FLAG_IMMUTABLE);//PendingIntent.FLAG_UPDATE_CURRENT);
         Calendar c = Calendar.getInstance();
         c.setTime(applyDate);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -77,7 +77,7 @@ public class Alarm extends BroadcastReceiver {
         Intent intent = new Intent(context, Alarm.class);
         intent.putExtra(POLICY_HASH, timeContext.hashCode());
         intent.putExtra(ACTION, ACTION_APPLY);
-        PendingIntent sender = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent sender = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_IMMUTABLE);//PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(sender);
     }

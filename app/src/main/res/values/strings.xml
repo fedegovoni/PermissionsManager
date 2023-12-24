@@ -68,6 +68,16 @@
     <string name="saturday">S</string>
     <string name="sunday">S</string>
 
+    <string-array name="days_of_week_array">
+        <item>M</item>
+        <item>T</item>
+        <item>W</item>
+        <item>T</item>
+        <item>F</item>
+        <item>S</item>
+        <item>S</item>
+    </string-array>
+
     <string name="activation_date">Activation date</string>
     <string name="activation_time">Activation time</string>
     <string name="deactivation_before_activation_error">Attention: if Deactivation time comes earlier than Activation time, the Context will be deactivated on the next day</string>
@@ -100,10 +110,10 @@
     <string name="modify">Modify</string>
     <string name="delete">Delete</string>
 
-    <string name="changelog_content_title" translatable="false">Permissions Manager V 1.6.2</string>
+    <string name="changelog_content_title" translatable="false">Permissions Manager V 1.6.3</string>
     <string-array name="changelog_content_value">
-        <item>- Fixed bug that made impossible to choose a position in context creation.</item>
         <item>- Updated Libraries</item>
+        <item>- Extended support to latest Android versions</item>
     </string-array>
 
     <string-array name="policy_types_array">

@@ -43,8 +43,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity
@@ -52,19 +50,16 @@ public class MainActivity extends BaseActivity
 
     private boolean mDebug = false;
 
-
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
-
-    @BindView(R.id.activity_main_nav_view)
     NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toolbar = findViewById(R.id.toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.activity_main_nav_view);
 
         setSupportActionBar(toolbar);
 

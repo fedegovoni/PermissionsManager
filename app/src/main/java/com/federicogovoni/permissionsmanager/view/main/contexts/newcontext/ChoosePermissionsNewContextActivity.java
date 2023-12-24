@@ -33,9 +33,6 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import timber.log.Timber;
 
 public class ChoosePermissionsNewContextActivity extends BaseActivity implements SearchView.OnQueryTextListener, ProVersionChecker.IProVersionListener {
@@ -44,22 +41,24 @@ public class ChoosePermissionsNewContextActivity extends BaseActivity implements
     private AppPermissionsExpandableListAdapter adapter;
     private SearchView searchView;
 
-    @BindView(R.id.activity_choose_permissions_new_context_floating_action_button)
     FloatingActionButton newContextFab;
-
-    @BindView(R.id.activity_choose_permissions_new_context_expandable_list_view)
     ExpandableListView listView;
-
-    @BindView(R.id.acrtivity_choose_permissions_new_context_progress_bar)
     ProgressBar progressBar;
-
-    @BindView(R.id.activity_choose_permissions_new_context_empty_list_relative_layout)
     RelativeLayout emptyListRelativeLayout;
 
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_choose_permissions_new_context);
+
+        newContextFab = findViewById(R.id.activity_choose_permissions_new_context_floating_action_button);
+        listView = findViewById(R.id.activity_choose_permissions_new_context_expandable_list_view);
+        progressBar = findViewById(R.id.acrtivity_choose_permissions_new_context_progress_bar);
+        emptyListRelativeLayout = findViewById(R.id.activity_choose_permissions_new_context_empty_list_relative_layout);
+
+        newContextFab.setOnClickListener(this::onNewContextFabClick);
 
         toCreate = TmpContextKeeper.getInstance().getCurrentContext();
         final String type = getIntent().getStringExtra("TYPE");
@@ -128,7 +127,6 @@ public class ChoosePermissionsNewContextActivity extends BaseActivity implements
         });
     }
 
-    @OnClick(R.id.activity_choose_permissions_new_context_floating_action_button)
     public void onNewContextFabClick(View v) {
         final String type = getIntent().getStringExtra("TYPE");
         Intent intent;

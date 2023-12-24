@@ -9,42 +9,42 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.viewbinding.BuildConfig;
 
+import com.federicogovoni.permissionmanager.BuildConfig;
 import com.federicogovoni.permissionmanager.R;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.federicogovoni.permissionsmanager.controller.ProVersionChecker;
 
 import java.util.Objects;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import timber.log.Timber;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("NonConstantResourceId")
 public class GetProFragment extends Fragment {
 
-    @BindView(R.id.fragment_get_pro_description_text_view)
     TextView descriptionTextView;
-
-    @BindView(R.id.fragment_get_pro_consume_fab)
     AppCompatButton consumeFab;
-
-    @BindView(R.id.fragment_get_pro_progress_bar)
     LinearProgressIndicator progressBar;
-
-    @BindView(R.id.fragment_get_pro_purchase_fab)
     AppCompatButton purchaseFab;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_get_pro, container, false);
-        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        purchaseFab = getActivity().findViewById(R.id.fragment_get_pro_purchase_fab);
+        descriptionTextView = getActivity().findViewById(R.id.fragment_get_pro_description_text_view);
+        progressBar = getActivity().findViewById(R.id.fragment_get_pro_progress_bar);
+        consumeFab = getActivity().findViewById(R.id.fragment_get_pro_consume_fab);
+
+        purchaseFab.setOnClickListener(this::purchaseProVersion);
+        consumeFab.setOnClickListener(this::consumePurchases);
+
 
         if(BuildConfig.DEBUG) {
             consumeFab.setVisibility(View.VISIBLE);
@@ -72,12 +72,9 @@ public class GetProFragment extends Fragment {
                 purchaseFab.setEnabled(true);
             }
         });
-
-        return view;
     }
 
-    @OnClick(R.id.fragment_get_pro_purchase_fab)
-    public void purchaseProVersion() throws NullPointerException {
+    public void purchaseProVersion(View view) throws NullPointerException {
         assert getContext() != null;
         assert ProVersionChecker.getInstance(getContext()) != null;
         try {
@@ -88,7 +85,6 @@ public class GetProFragment extends Fragment {
         }
     }
 
-    @OnClick(R.id.fragment_get_pro_consume_fab)
     public void consumePurchases (@SuppressWarnings("unused") View view) throws NullPointerException {
         Timber.d("Revert purchases pressed");
         assert getContext() != null;

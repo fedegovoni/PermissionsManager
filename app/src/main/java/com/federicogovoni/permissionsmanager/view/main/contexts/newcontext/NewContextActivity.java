@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.DatePicker;
@@ -46,17 +47,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.BindViews;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnItemSelected;
 import timber.log.Timber;
 
 public class NewContextActivity extends BaseActivity {
@@ -64,57 +61,84 @@ public class NewContextActivity extends BaseActivity {
     private Address address;
     private ActivityResultLauncher<Intent> mapsActivityResultLauncher;
 
-    @BindView(R.id.activity_new_context_name_edit_text)
     EditText contextNameEditText;
-
-    @BindView(R.id.activity_new_context_activation_time_edit_text)
     EditText timeStartEditText;
-
-    @BindView(R.id.activity_new_context_activation_date_edit_text)
     EditText dateStartEditText;
-
-    @BindView(R.id.activity_new_context_deactivation_time_edit_text)
     EditText timeEndEditText;
-
-    @BindView(R.id.activity_new_context_deactivation_date_edit_text)
     EditText dateEndEditText;
-
-    @BindView(R.id.activity_new_context_frequency_spinner)
     Spinner frequencySpinner;
-
-    @BindView(R.id.activity_new_context_radius_edit_text)
     EditText radiusEdiText;
-
-    @BindView(R.id.activity_new_context_radius_text_input_layout)
     TextInputLayout radiusTextInputLayout;
-
-    @BindView(R.id.activity_new_context_address_edit_text)
     EditText addressEditText;
-
-    @BindView(R.id.activity_new_context_next_button)
     Button nextButton;
-
-    @BindView(R.id.activity_new_context_root_layout)
     ConstraintLayout rootLayout;
-
-    @BindViews({R.id.activity_new_context_monday_checked_text_view,
-            R.id.activity_new_context_tuesday_checked_text_view,
-            R.id.activity_new_context_wednesday_checked_text_view,
-            R.id.activity_new_context_thursday_checked_text_view,
-            R.id.activity_new_context_friday_checked_text_view,
-            R.id.activity_new_context_saturday_checked_text_view,
-            R.id.activity_new_context_sunday_checked_text_view})
-    List<CheckedTextView> daysOfWeekCTV;
-
-    @BindView(R.id.activity_new_context_scroll_view)
     View scrollView;
-
-    @BindView(R.id.activity_main_place_picker_container_fragment_container_view)
     FragmentContainerView fragmentContainerView;
+
+    CheckedTextView mondayCheckedTextView;
+    CheckedTextView tuesdayCheckedTextView;
+    CheckedTextView wednesdayCheckedTextView;
+    CheckedTextView thursdayCheckedTextView;
+    CheckedTextView fridayCheckedTextView;
+    CheckedTextView saturdayCheckedTextView;
+    CheckedTextView sundayCheckedTextView;
+    List<CheckedTextView> daysOfWeekCTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_new_context);
+
+        contextNameEditText = findViewById(R.id.activity_new_context_name_edit_text);
+        timeStartEditText = findViewById(R.id.activity_new_context_activation_time_edit_text);
+        dateStartEditText = findViewById(R.id.activity_new_context_activation_date_edit_text);
+        timeEndEditText  = findViewById(R.id.activity_new_context_deactivation_time_edit_text);
+        dateEndEditText = findViewById(R.id.activity_new_context_deactivation_date_edit_text);
+        frequencySpinner = findViewById(R.id.activity_new_context_frequency_spinner);
+        radiusEdiText = findViewById(R.id.activity_new_context_radius_edit_text);
+        radiusTextInputLayout = findViewById(R.id.activity_new_context_radius_text_input_layout);
+        addressEditText = findViewById(R.id.activity_new_context_address_edit_text);
+        nextButton = findViewById(R.id.activity_new_context_next_button);
+        rootLayout = findViewById(R.id.activity_new_context_root_layout);
+        scrollView = findViewById(R.id.activity_new_context_scroll_view);
+        fragmentContainerView = findViewById(R.id.activity_main_place_picker_container_fragment_container_view);
+
+        mondayCheckedTextView = findViewById(R.id.activity_new_context_monday_checked_text_view);
+        tuesdayCheckedTextView = findViewById(R.id.activity_new_context_tuesday_checked_text_view);
+        wednesdayCheckedTextView = findViewById(R.id.activity_new_context_wednesday_checked_text_view);
+        thursdayCheckedTextView = findViewById(R.id.activity_new_context_thursday_checked_text_view);
+        fridayCheckedTextView = findViewById(R.id.activity_new_context_friday_checked_text_view);
+        saturdayCheckedTextView = findViewById(R.id.activity_new_context_saturday_checked_text_view);
+        sundayCheckedTextView = findViewById(R.id.activity_new_context_sunday_checked_text_view);
+
+        daysOfWeekCTV = Arrays.asList(mondayCheckedTextView,tuesdayCheckedTextView,wednesdayCheckedTextView,thursdayCheckedTextView,fridayCheckedTextView,saturdayCheckedTextView,sundayCheckedTextView);
+
+        ArrayAdapter<CharSequence> daysOfWeekAdapter = ArrayAdapter.createFromResource(this, R.array.application_frequency, android.R.layout.simple_spinner_item);
+        daysOfWeekAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        frequencySpinner.setAdapter(daysOfWeekAdapter);
+
+        frequencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                frequencySpinnerOnItemSelected(adapterView, view, i, l);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Timber.d("Nothing selected");
+            }
+        });
+
+        daysOfWeekCTV.forEach(dayItem -> dayItem.setOnClickListener(this::onDayItemClick));
+
+        timeStartEditText.setOnClickListener(this::activationTimeEditTextOnClick);
+        addressEditText.setOnClickListener(this::onAddressEditTextClick);
+        nextButton.setOnClickListener(this::onNextButtonClick);
+        dateEndEditText.setOnClickListener(this::dateEndEditTextOnClick);
+        timeEndEditText.setOnClickListener(this::onTimeEndEditTextClick);
+        dateStartEditText.setOnClickListener(this::onDateStartEditTextClick);
 
         checkIfInModifyScenarioAndSetFields();
 
@@ -158,8 +182,7 @@ public class NewContextActivity extends BaseActivity {
         super.onResume();
     }
 
-    @OnItemSelected(R.id.activity_new_context_frequency_spinner)
-    public void frequencySpinnerOnItemSecected(AdapterView<?> parent, View view, int position, long id) {
+    public void frequencySpinnerOnItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) { //frequency none
             findViewById(R.id.activity_new_context_week_bar_text_input_layout).setVisibility(View.GONE);
             findViewById(R.id.activity_new_context_attention_label_text_input_layout).setVisibility(View.GONE);
@@ -178,7 +201,6 @@ public class NewContextActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.activity_new_context_activation_time_edit_text)
     public void activationTimeEditTextOnClick(View v) {
         Calendar mCurrentTime = Calendar.getInstance();
         int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -199,7 +221,6 @@ public class NewContextActivity extends BaseActivity {
         mTimePicker.show();
     }
 
-    @OnClick(R.id.activity_new_context_address_edit_text)
     public void onAddressEditTextClick(View v) {
         //Open GMaps
         Intent intent = new Intent(this, MapsActivityCurrentPlace.class);
@@ -207,8 +228,7 @@ public class NewContextActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.activity_new_context_next_button)
-    public void onNextButtonClick() {
+    public void onNextButtonClick(View view) {
         final CurrentContext savedInstance = TmpContextKeeper.getInstance().getCurrentContext();
 
         String name = contextNameEditText.getText().toString();
@@ -278,14 +298,7 @@ public class NewContextActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    @OnClick({R.id.activity_new_context_monday_checked_text_view,
-            R.id.activity_new_context_tuesday_checked_text_view,
-            R.id.activity_new_context_wednesday_checked_text_view,
-            R.id.activity_new_context_thursday_checked_text_view,
-            R.id.activity_new_context_friday_checked_text_view,
-            R.id.activity_new_context_saturday_checked_text_view,
-            R.id.activity_new_context_sunday_checked_text_view})
-    public void onItemClick(View v) {
+    public void onDayItemClick(View v) {
         ((CheckedTextView) v).setChecked(!((CheckedTextView) v).isChecked());
         if (((CheckedTextView) v).isChecked()) {
             v.setBackground(getResources().getDrawable(R.drawable.circle));
@@ -296,7 +309,6 @@ public class NewContextActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.activity_new_context_deactivation_date_edit_text)
     public void dateEndEditTextOnClick(View v) {
         Calendar mCurrentDate = Calendar.getInstance();
         int year, monthOfYear, dayOfMonth;
@@ -320,7 +332,6 @@ public class NewContextActivity extends BaseActivity {
         datePicker.show();
     }
 
-    @OnClick(R.id.activity_new_context_activation_date_edit_text)
     public void onDateStartEditTextClick(View v) {
         Calendar mCurrentDate = Calendar.getInstance();
         int year, monthOfYear, dayOfMonth;
@@ -344,7 +355,6 @@ public class NewContextActivity extends BaseActivity {
         datePicker.show();
     }
 
-    @OnClick(R.id.activity_new_context_deactivation_time_edit_text)
     public void onTimeEndEditTextClick(View v) {
         Calendar mCurrentTime = Calendar.getInstance();
         int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -444,9 +454,15 @@ public class NewContextActivity extends BaseActivity {
         Timber.d("IProVersionListener invoked for %s", getClass().toString());
         super.onProVersionResult(isPro);
         if(isPro) {
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) scrollView.getLayoutParams();
-            layoutParams.setMargins(0, 0, layoutParams.getMarginEnd(), layoutParams.getMarginEnd());
-            scrollView.setLayoutParams(layoutParams);
+            try {
+                if (scrollView == null)
+                    scrollView = findViewById(R.id.activity_new_context_scroll_view);
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) scrollView.getLayoutParams();
+                layoutParams.setMargins(0, 0, layoutParams.getMarginEnd(), layoutParams.getMarginEnd());
+                scrollView.setLayoutParams(layoutParams);
+            } catch(NullPointerException e) {
+                Timber.w("ScrollView is null");
+            }
         }
     }
 

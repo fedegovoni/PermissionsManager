@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
@@ -22,9 +23,6 @@ import com.federicogovoni.permissionsmanager.controller.ProVersionChecker;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 import timber.log.Timber;
 
 /**
@@ -40,21 +38,32 @@ public class ApplicationsFragment extends Fragment implements SearchView.OnQuery
     private SearchView searchView;
     private List<ApplicationInfo> filteredInstalledApplications;
 
-    @BindView(R.id.fragment_applications_applications_list_view)
     ListView applicationsListView;
 
-    @BindView(R.id.fragment_applications_empty_list_relative_layout)
     RelativeLayout emptyAppListRelativeLayout;
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-
         View view = inflater.inflate(R.layout.fragment_applications, container, false);
-        ButterKnife.bind(this, view);
-
         getActivity().setTitle(R.string.app_title);
+        return view;
+    }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        applicationsListView = view.findViewById(R.id.fragment_applications_applications_list_view);
+        emptyAppListRelativeLayout = view.findViewById(R.id.fragment_applications_empty_list_relative_layout);
+        emptyAppListRelativeLayout = view.findViewById(R.id.fragment_applications_empty_list_relative_layout);
+
+        applicationsListView.setOnItemClickListener(this::onAppClick);
         filteredInstalledApplications = ApplicationsInfoManager.getInstance(getActivity().getApplicationContext()).getInstalledApplications();
 
         ProVersionChecker.checkIfPro(getContext(), isPro -> {
@@ -63,8 +72,6 @@ public class ApplicationsFragment extends Fragment implements SearchView.OnQuery
         });
 
         fillListView();
-
-        return view;
     }
 
     private void fillListView() {
@@ -80,7 +87,6 @@ public class ApplicationsFragment extends Fragment implements SearchView.OnQuery
         applicationsListView.setAdapter(adapter);
     }
 
-    @OnItemClick(R.id.fragment_applications_applications_list_view)
     public void onAppClick(AdapterView<?> adapter, final View view, int pos, long id) {
         Intent intent = new Intent(getActivity(), PermissionsActivity.class);
         intent.putExtra("SELECTED_APP_NAME_ID", pos);

@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.federicogovoni.permissionsmanager.controller.ProVersionChecker;
@@ -27,9 +28,6 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.lang.ref.WeakReference;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnItemSelected;
 import timber.log.Timber;
 
 /**
@@ -40,20 +38,46 @@ public class SettingsFragment extends Fragment implements ProVersionChecker.IPro
     public static final String RECEIVE_NOTIFICATION_SHARED_PREFERENCE = "RECEIVE_NOTIFICATION";
     private SharedPreferences mSharedPreferences;
 
-    @BindView(R.id.fragment_settings_distance_unit_spinner)
     Spinner distanceUnitSpinner;
-
-    @BindView(R.id.fragment_settings_applications_list_spinner)
     Spinner applicationsListTypeSpiner;
-
-    @BindView(R.id.fragment_settings_receive_notifications_switch)
     SwitchMaterial receiveNotificationsSwitch;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        distanceUnitSpinner = getActivity().findViewById(R.id.fragment_settings_distance_unit_spinner);
+        applicationsListTypeSpiner = getActivity().findViewById(R.id.fragment_settings_applications_list_spinner);
+        receiveNotificationsSwitch = getActivity().findViewById(R.id.fragment_settings_receive_notifications_switch);
+
+        applicationsListTypeSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                onListTypeSelected(adapterView, view, i, l);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Timber.d("Nothing selected");
+            }
+        });
+
+        distanceUnitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                onDistanceUnitSelected(adapterView, view, i, l);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Timber.d("Nothing selected");
+            }
+        });
 
         getActivity().setTitle(R.string.settings);
 
@@ -67,8 +91,6 @@ public class SettingsFragment extends Fragment implements ProVersionChecker.IPro
 
         int apps = mSharedPreferences.getInt(ApplicationsFragment.APPLICATIONS_LIST, ApplicationsFragment.USER_APPLICATIONS);
         applicationsListTypeSpiner.setSelection(apps);
-
-        return view;
     }
 
     @Override
@@ -84,8 +106,6 @@ public class SettingsFragment extends Fragment implements ProVersionChecker.IPro
             });
         }
     }
-
-    @OnItemSelected(R.id.fragment_settings_applications_list_spinner)
     public void onListTypeSelected(AdapterView<?> parent, View view, int position, long id) {
         if (position == ApplicationsFragment.ALL_APPLICATIONS) {
             if (mSharedPreferences.getInt(ApplicationsFragment.APPLICATIONS_LIST, ApplicationsFragment.USER_APPLICATIONS)== ApplicationsFragment.USER_APPLICATIONS) {
@@ -111,8 +131,6 @@ public class SettingsFragment extends Fragment implements ProVersionChecker.IPro
             }
         }
     }
-
-    @OnItemSelected(R.id.fragment_settings_distance_unit_spinner)
     public void onDistanceUnitSelected(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
             if (mSharedPreferences.getString(LocationContext.MEASURE, LocationContext.KM).equals(LocationContext.MILES)) {

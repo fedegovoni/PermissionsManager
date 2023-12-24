@@ -142,7 +142,11 @@ class ProVersionChecker private constructor(private val mContext: Context) : Pur
 
         //Funzione pro non ancora comprata
         iProVersionListeners.forEach { iProVersionListener ->
-            iProVersionListener.onProVersionResult(isPro)
+            try {
+                iProVersionListener.onProVersionResult(isPro)
+            } catch (e: NullPointerException) {
+                Timber.w("Null Pointer Exception updating layout")
+            }
         }
         Timber.v("Setting Pro Version: %b", isPro)
     }

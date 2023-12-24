@@ -18,26 +18,27 @@ import com.federicogovoni.permissionsmanager.controller.ContextManager;
 import com.federicogovoni.permissionsmanager.view.main.contexts.newcontext.NewContextActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import timber.log.Timber;
 
 public class ContextsFragment extends Fragment {
 
-    @BindView(R.id.fragment_contexts_add_context_button)
     FloatingActionButton addContextButton;
-
-    @BindView(R.id.fragment_contexts_main_list_view)
     ListView contextsListView;
-
-    @BindView(R.id.fragment_contexts_empty_relative_layout)
     RelativeLayout emptyRelativeLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contexts, container, false);
-        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        addContextButton = getActivity().findViewById(R.id.fragment_contexts_add_context_button);
+        contextsListView = getActivity().findViewById(R.id.fragment_contexts_main_list_view);
+        emptyRelativeLayout = getActivity().findViewById(R.id.fragment_contexts_empty_relative_layout);
+
+        addContextButton.setOnClickListener(this::onAddContextClick);
 
         ProVersionChecker.checkIfPro(getActivity(), isPro -> {
             Timber.d("IProVersionListener invoked for %s", getClass().toString());
@@ -60,8 +61,6 @@ public class ContextsFragment extends Fragment {
             contextsListView.setVisibility(View.GONE);
             emptyRelativeLayout.setVisibility(View.VISIBLE);
         }
-
-        return view;
     }
 
     @Override
@@ -70,7 +69,6 @@ public class ContextsFragment extends Fragment {
         getActivity().setTitle(R.string.contexts);
     }
 
-    @OnClick(R.id.fragment_contexts_add_context_button)
     public void onAddContextClick(View v) {
         Intent intent = new Intent(getActivity(), NewContextActivity.class);
         TmpContextKeeper.getInstance().setCurrentContext(new CurrentContext("", getActivity().getApplicationContext()));

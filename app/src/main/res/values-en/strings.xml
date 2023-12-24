@@ -79,8 +79,8 @@
     <string name="delete">Delete</string>
 
     <string-array name="changelog_content_value">
-        <item>- Fixed bug that made impossible to choose a position in context creation.</item>
         <item>- Updated Libraries</item>
+        <item>- Extended support to latest Android versions</item>
     </string-array>
 
 

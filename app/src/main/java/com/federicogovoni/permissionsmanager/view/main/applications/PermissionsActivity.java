@@ -26,19 +26,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import timber.log.Timber;
 
 public class PermissionsActivity extends BaseActivity {
     public static final String OTHER = "OTHER";
 
-    @BindView(R.id.activity_permissions_progress_bar)
     ProgressBar progressBar;
-
-    @BindView(R.id.activity_permissions_list_view)
     ListView activityPermissionsListView;
-
 
     @SuppressLint("StaticFieldLeak")
     @Override
@@ -48,6 +42,11 @@ public class PermissionsActivity extends BaseActivity {
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        setContentView(R.layout.activity_permissions);
+
+        activityPermissionsListView = findViewById(R.id.activity_permissions_list_view);
+        progressBar = findViewById(R.id.activity_permissions_progress_bar);
 
         String appTitle = (String) getIntent().getExtras().get("SELECTED_APP_NAME");
         getSupportActionBar().setTitle(appTitle);
@@ -106,7 +105,13 @@ public class PermissionsActivity extends BaseActivity {
         Timber.d("IProVersionListener invoked for %s", getClass().toString());
         super.onProVersionResult(isPro);
         if(isPro) {
-            activityPermissionsListView.setPadding(0, 0, 0, 0);
+            try {
+                if (activityPermissionsListView == null)
+                    activityPermissionsListView = findViewById(R.id.activity_permissions_list_view);
+                activityPermissionsListView.setPadding(0, 0, 0, 0);
+            } catch(NullPointerException e) {
+                Timber.d("activity is null");
+            }
         }
     }
 

@@ -32,9 +32,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import timber.log.Timber;
 
 
@@ -82,18 +79,22 @@ public class MapsActivityCurrentPlace extends BaseActivity
     private static final String KEY_LOCATION = "location";
 
     
-    @BindView(R.id.activity_place_picker_show_current_position_fab)
     FloatingActionButton showCurrentPositionFab;
-    
-    @BindView(R.id.activity_place_picker_select_position_fab)
     FloatingActionButton selectPositionFab;
-
-    @BindView(R.id.activity_place_picker_progress_bar)
     LinearProgressIndicator progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_place_picker);
+
+        showCurrentPositionFab = findViewById(R.id.activity_place_picker_show_current_position_fab);
+        selectPositionFab = findViewById(R.id.activity_place_picker_select_position_fab);
+        progressBar = findViewById(R.id.activity_place_picker_progress_bar);
+
+        showCurrentPositionFab.setOnClickListener((v) -> getDeviceLocation());
+        selectPositionFab.setOnClickListener((v) -> onPositionSelected());
 
         // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
@@ -106,7 +107,7 @@ public class MapsActivityCurrentPlace extends BaseActivity
         selectPositionFab.setEnabled(false);
 
         // Construct a PlacesClient
-        Places.initialize(getApplicationContext(), BuildConfig.GMAPS_API_KEY);
+        Places.initialize(getApplicationContext(), "AIzaSyBfWFEkdtop7eIT45ztQNW0QmayQq5P2Vw");
         placesClient = Places.createClient(this);
 
 
@@ -160,7 +161,6 @@ public class MapsActivityCurrentPlace extends BaseActivity
      * Gets the current location of the device, and positions the map's camera.
      */
 
-    @OnClick(R.id.activity_place_picker_show_current_position_fab)
     public void getDeviceLocation() {
         /*
          * Get the best and most recent location of the device, which may be null in rare
@@ -231,8 +231,6 @@ public class MapsActivityCurrentPlace extends BaseActivity
         updateLocationUI();
     }
 
-    
-    @OnClick(R.id.activity_place_picker_select_position_fab)
     public void onPositionSelected() {
         Timber.d("Click su placeSelected");
         Timber.d("Camera position: %s", map.getCameraPosition());

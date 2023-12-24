@@ -78,8 +78,8 @@
     <string name="delete">Cancella</string>
 
     <string-array name="changelog_content_value">
-        <item>- Risolto il bug che rendeva impossibile selezionare la posizione nella fase di creazione di un Contesto.</item>
         <item>- Librerie aggiornate.</item>
+        <item>- Esteso l\'utilizzo dell\'app anche alle ultime versioni di Andrid</item>
     </string-array>
 
     <string-array name="policy_types_array">

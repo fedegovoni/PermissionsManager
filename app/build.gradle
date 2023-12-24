@@ -5,7 +5,6 @@ plugins {
 }
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
     signingConfigs {
@@ -22,14 +21,14 @@ android {
             keyPassword 'Federico94'
         }
     }
-    compileSdk 31
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.federicogovoni.permissionsmanager"
         minSdk 26
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        targetSdk 34
+        versionCode 144
+        versionName "1.6.3"
         buildConfigField 'String', 'ADMOB_API_KEY', '"ca-app-pub-9125265928210219~3176045725"'
 
         // Load credentials.
@@ -43,7 +42,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
         minSdkVersion 26
-        targetSdkVersion 31
+        targetSdkVersion 34
     }
 
     buildTypes {
@@ -65,19 +64,21 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.federicogovoni.permissionmanager'
 }
 
 dependencies {
     api fileTree(include: ["*.jar"], dir: "libs")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:1.3.1"
-    implementation "com.google.android.material:material:1.4.0"
-    implementation "androidx.annotation:annotation:1.2.0"
-    implementation "androidx.constraintlayout:constraintlayout:2.1.0"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.21"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "com.google.android.material:material:1.11.0"
+    implementation "androidx.annotation:annotation:1.7.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.test:monitor:1.4.0'
+    implementation 'androidx.test:monitor:1.6.1'
+    implementation 'androidx.work:work-runtime-ktx:2.9.0'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: "com.android.support", module: "support-annotations"
     })
@@ -89,7 +90,7 @@ dependencies {
     implementation "com.android.support:support-v4:$android_lib_versions"
     implementation "com.android.support:support-compat:$android_lib_versions"
 
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation 'androidx.cardview:cardview:1.0.0'
 
 
@@ -98,8 +99,8 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:2.0.4"
 
     //location and places services
-    implementation "com.google.android.gms:play-services-location:18.0.0"
-    implementation "com.google.android.libraries.places:places:2.5.0"
+    implementation "com.google.android.gms:play-services-location:20.0.0"
+    implementation "com.google.android.libraries.places:places:3.3.0"
 
     //JUnit test
     implementation "junit:junit:4.13.2"
@@ -108,29 +109,25 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
 
     //in-app purchases
-    def billing_version = "4.0.0"
+    def billing_version = "6.1.0"
     implementation "com.android.billingclient:billing:$billing_version"
 
     //logging - timber
     implementation "com.jakewharton.timber:timber:4.7.1"
 
     //analytics
-    implementation 'com.google.firebase:firebase-analytics:20.0.2'
+    implementation 'com.google.firebase:firebase-analytics:21.5.0'
     implementation 'com.google.firebase:firebase-auth'
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
 
     //ads
-    implementation 'com.google.android.gms:play-services-ads:20.3.0'
+    implementation 'com.google.android.gms:play-services-ads:22.6.0'
 
     //In app billing
-    implementation 'com.android.billingclient:billing:4.0.0'
-
-    //ButterKnife
-    implementation 'com.jakewharton:butterknife:10.2.3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    implementation 'com.android.billingclient:billing:6.1.0'
 
     //Fragment AndroidX
-    def fragment_version = "1.3.6"
+    def fragment_version = "1.6.2"
     implementation "androidx.fragment:fragment:$fragment_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 }
